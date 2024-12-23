@@ -58,7 +58,7 @@ git commit -am 'feat (#189) : 게시판 작성 기능 구현'
 
 1. **디렉토리 및 폴더명**
 
-   - **PascalCase**를 사용. ex) Main, Member, MemberInfo, MemberPost
+   - **PascalCase**를 사용. example) Main, Member, MemberInfo, MemberPost
 
 2. **파일명**
 
@@ -67,7 +67,6 @@ git commit -am 'feat (#189) : 게시판 작성 기능 구현'
 4. **CSS 클래스명**
 
    - **BEM(Block Element Modifier)** 규칙을 사용
-     example)
      - **Block** : menu, button, card
      - **Element** : menu__item, button__icon, card__header
      - **Modifier** : button--primary, menu__item--active, card__header--large     
