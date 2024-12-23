@@ -1,10 +1,4 @@
 # BeTheBestTeam
-# 컴포넌트 구조
-
-- **Common Components**: 여러 곳에서 재사용되는 공통 컴포넌트들 (e.g., 버튼, 입력 필드 등)
-- **Feature-Specific Components**: 특정 기능이나 페이지에만 사용되는 컴포넌트들
-- **Layout Components**: 페이지 레이아웃을 구성하는 컴포넌트들 (e.g., Header, Footer, Sidebar 등)
-- **Pages**: 각 페이지별로 사용되는 컴포넌트들을 해당 페이지 폴더 안에 넣어 관리 
 
 # 브랜치 전략
 
