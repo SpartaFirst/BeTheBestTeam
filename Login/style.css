@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+li,
+ul,
+ol {
+  list-style: none;
+}
+
+#myBtn {
+  background-color: rgb(70, 70, 133);
+  color: white;
+  border-radius: 5px;
+  font-size: 1em;
+  border: none;
+  width: 100px;
+  height: 40px;
+}
+
+#myBtn:hover {
+  background-color: rgb(14, 14, 44);
+}
+
+input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+  width: 300px;
+}
