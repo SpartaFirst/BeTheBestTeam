@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+li,
+ul,
+ol {
+  list-style: none;
+}
+
+header {
+  text-align: center;
+  width: 1400px;
+}
+h1 {
+  font-size: 3rem;
+}
+
+.division {
+  border-top: 1px solid #d7d7d7;
+  margin: 30px auto;
+}
+
+.division::after {
+  /* content: "◆"; */
+  position: relative;
+  top: -13px;
+}
+
+/** 멤버 섹션 */
+section {
+  text-align: center;
+  align-items: center;
+}
+
+/** 멤버카드 메인 */
+.section__main {
+  display: flex;
+  flex-direction: row;
+  width: 1400px;
+  height: 300px;
+  justify-content: space-between;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* 멤버 설명 */
+.section__desc {
+  margin: 30px;
+  width: 70%;
+}
+
+.section__desc h1 {
+  font-size: 2rem;
+}
+.section__desc p {
+  padding: 0px 60px;
+  text-align: left;
+  line-height: 2rem;
+}
+/* 멤버 정보 */
+.section__info {
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f4ff;
+  width: 17%;
+  margin: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.section__img {
+  margin: 20px auto;
+  width: 57%;
+  border-radius: 50%;
+  height: 80%;
+  overflow: hidden;
+}
+.section__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 깃헙 벨로그 티스토리 주소 */
+.section__link {
+  display: flex;
+  flex-direction: row;
+  width: 140px;
+  height: 15%;
+  margin: 20px auto;
+  margin-top: 0px;
+  justify-content: space-evenly;
+  background-color: #fff;
+  border-radius: 15px;
+  /* border: 1px solid #000; */
+}
+.section__velog {
+  display: none;
+}
+.section__tistory {
+  /* display: none; */
+}
