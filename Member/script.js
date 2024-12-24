@@ -41,7 +41,10 @@ docs.forEach((doc) => {
   let sectionHtml = `<div class="section__main">
         <!-- 멤버 설명 -->
         <div class="section__desc">
-          <h1>${userName}</h1>
+          <div class="section__head">
+            <h1>${userName}</h1>
+            <h4>개발자가 말대꾸?!</h4>
+          </div>
           <p>
             ${userBio}
           </p>
