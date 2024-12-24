@@ -8,21 +8,30 @@ import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/fi
 import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
+
 // Firebase 구성 정보 설정
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBLTIcnTjGiYZaj4ZwgCRUOR3hNFMjvQCs",
-  authDomain: "sparta-9bd71.firebaseapp.com",
-  projectId: "sparta-9bd71",
-  storageBucket: "sparta-9bd71.firebasestorage.app",
-  messagingSenderId: "754248503208",
-  appId: "1:754248503208:web:71dd76080c6e636341d79d"
+  apiKey: "AIzaSyBoI6KU8CSsiSE31m7Z6HdjuQhcw02VfWw",
+  authDomain: "bethebestteam-8ce27.firebaseapp.com",
+  projectId: "bethebestteam-8ce27",
+  storageBucket: "bethebestteam-8ce27.firebasestorage.app",
+  messagingSenderId: "916725484205",
+  appId: "1:916725484205:web:e6bc6963dff95693a39424"
 };
 
 // Firebase 인스턴스 초기화
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let docs = await getDocs(collection(db, "user"));
+docs.forEach((doc) => {
+  let row = doc.data();
+  let userID = row.userID;
+  let userPW = row.userPW;
+  console.log(userID);
+
+})
 
 
 document.getElementById("myBtn").addEventListener("click", async function () {
@@ -30,40 +39,17 @@ document.getElementById("myBtn").addEventListener("click", async function () {
   const myId = document.getElementById('myId').value;
   const myPassword = document.getElementById('myPassword').value;
 
-   //데이터 객체 생성
-  const doc = {
-    아이디: myId,
-    비밀번호: myPassword
-  };
+  //form 쓰다가 어려워서 다시 처음 방법으로 돌아갔ㅠㅠㅠ
 
-  if(!myId || !myPassword){
-    alert("아이디와 비밀번호를 입력해주세요")
-  }
-  else{
-    await addDoc(collection(db, "login"), doc);  //컬렉션 "login"에 값 저장
-    alert('안녕하세요. OOO님 이란 메세지가 뜨면서 유효성 확인이 들어가야 할 것 같아요......');
-    window.location.reload(); // 페이지 새로고침
-  }
+  //firebase에서 userID와 userPW를 가져와야함
+  //1. getDoc?? doc??을 통해서 가져올 경로? 를 어떻게든 써야할테고
+  //2. userID와 userPW를 담을 getId 와 getPw 변수가 필요할것
+  //3. 첫번째 if문을 통해서, 만약 유저 아이디가 일치하지 않으면? 아이디를 확인해주세요
+  // 두번째 if문으로, 만약 유저 패스워드가 일치하지 않으면? 비밀번호를 확인해주세요.
+  // else로, 두가지가 맞다면 "로그인 성공!출력"
+
+  // +기능으로 하나라도 빈칸이 있다면 "!myId || !myPw" -> "누락된 곳이 있습니다" 이거는 focus를 써주는 연습???
+
+
 
 })
-
-
-
-
-
-
-// $("#myBtn").click(async function () {
-//   let ID = $("#myId").val();
-//   let Password = $("#myPassword").val();
-
-//   // 넣고싶은 데이터
-//   let doc = {
-//     '아이디': ID,
-//     '비밀번호': Password,
-//   };
-
-//   // "콘렉션 이름"이라는 콜렉션에 데이터 doc 저장
-//   await addDoc(collection(db, "login"), doc);
-//   alert('저장완료');
-//   window.location.reload();
-// })
