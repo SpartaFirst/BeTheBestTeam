@@ -54,14 +54,32 @@ section {
   width: 70%;
 }
 
-.section__desc h1 {
-  margin-left: 45px;
-  font-size: 2rem;
+.section__head {
+  display: flex;
+  vertical-align: bottom;
+  align-items: baseline;
+  margin-bottom: 30px;
 }
+.section__head h1,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+.section__head h1 {
+  margin-left: 45px;
+  font-size: 2.5rem;
+}
+
+.section__head h4 {
+  margin-left: 20px;
+  vertical-align: bottom;
+  color: rgb(106, 106, 106);
+}
+
 .section__desc p {
   padding: 0px 60px;
   text-align: left;
-  line-height: 2rem;
+  line-height: 2.2rem;
 }
 /* 멤버 정보 */
 .section__info {
