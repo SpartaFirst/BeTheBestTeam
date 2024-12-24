@@ -16,7 +16,7 @@ header {
   text-align: center;
   width: 1400px;
 }
-h1 {
+header h1 {
   font-size: 3rem;
 }
 
@@ -33,7 +33,6 @@ h1 {
 
 /** 멤버 섹션 */
 section {
-  text-align: center;
   align-items: center;
 }
 
@@ -56,6 +55,7 @@ section {
 }
 
 .section__desc h1 {
+  margin-left: 45px;
   font-size: 2rem;
 }
 .section__desc p {
@@ -98,9 +98,18 @@ section {
   border-radius: 15px;
   /* border: 1px solid #000; */
 }
-.section__velog {
+
+.section__link a {
+  width: 25%;
+}
+.section__link img {
+  width: 100%;
+  height: 100%;
+}
+
+/* .section__velog {
   display: none;
 }
 .section__tistory {
-  /* display: none; */
-}
+  display: none;
+} */
