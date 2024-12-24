@@ -15,24 +15,32 @@
     <main id="main">
         <form id="member__form">
             <div class="form__group">
+                <label for="userId">아이디</label>
+                <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
+            </div>
+            <div class="form__group">
+                <label for="userPw">비밀번호</label>
+                <input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력해주세요">
+            </div>
+            <div class="form__group">
                 <label for="photo">사진</label>
                 <input type="file" id="photo" name="photo">
             </div>
             <div class="form__group">
                 <label for="name">이름</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
             </div>
             <div class="form__group">
                 <label for="mbti">MBTI</label>
-                <input type="text" id="mbti" name="mbti">
+                <input type="text" id="mbti" name="mbti" placeholder="MBTI를 입력해주세요(4자 영어로)">
             </div>
             <div class="form__group">
                 <label for="hobby">취미</label>
-                <input type="text" id="hobby" name="hobby">
+                <input type="text" id="hobby" name="hobby" placeholder="취미를 입력해주세요">
             </div>
             <div class="form__group">
                 <label for="bio">자기소개</label>
-                <textarea id="bio" name="bio"></textarea>
+                <textarea id="bio" name="bio" placeholder="자기소개를 입력해주세요"></textarea>
             </div>
             <div class="form__group" id="blog">
                 <label for="blog__category">블로그</label>
@@ -42,12 +50,12 @@
                         <option>velog</option>
                         <option>tistory</option>
                     </select>
-                    <input type="text" id="blog__name" name="blog__name" placeholder="블로그 주소 입력">
+                    <input type="text" id="blog__name" name="blog__name" placeholder="블로그 주소를 입력해주세요">
                 </div>
             </div>
             <div class="form__group">
                 <label for="github">Github</label>
-                <input type="text" id="github" name="github">
+                <input type="text" id="github" name="github" placeholder="Github 주소를 입력해주세요">
             </div>
             <div class="form__group">
                 <button type="submit" id="submit">제출</button>
