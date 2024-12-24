@@ -13,45 +13,49 @@
         Member Post
     </header>
     <main id="main">
-        <div class="form__group">
-            <label for="photo">사진</label>
-            <input type="file" id="photo">
-        </div>
-        <div class="form__group">
-            <label for="name">이름</label>
-            <input type="text" id="name">
-        </div>
-        <div class="form__group">
-            <label for="mbti">MBTI</label>
-            <input type="text" id="mbti">
-        </div>
-        <div class="form__group">
-            <label for="hobby">취미</label>
-            <input type="text" id="hobby">
-        </div>
-        <div class="form__group">
-            <label for="bio">자기소개</label>
-            <textarea id="bio"></textarea>
-        </div>
-        <div class="form__group" id="blog">
-            <label for="blog__category">블로그</label>
-            <div id="blog__info">
-                <select id="blog__category">
-                    <option selected>---</option>
-                    <option>velog</option>
-                    <option>tistory</option>
-                </select>
-                <input type="text" id="blog__name" placeholder="블로그 주소 입력">
+        <form id="member__form">
+            <div class="form__group">
+                <label for="photo">사진</label>
+                <input type="file" id="photo" name="photo">
             </div>
-        </div>
-        <div class="form__group">
-            <label for="github">Github</label>
-            <input type="text" id="github">
-        </div>
-        <div class="form__group">
-            <button id="submit">제출</button>
-        </div>
+            <div class="form__group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form__group">
+                <label for="mbti">MBTI</label>
+                <input type="text" id="mbti" name="mbti">
+            </div>
+            <div class="form__group">
+                <label for="hobby">취미</label>
+                <input type="text" id="hobby" name="hobby">
+            </div>
+            <div class="form__group">
+                <label for="bio">자기소개</label>
+                <textarea id="bio" name="bio"></textarea>
+            </div>
+            <div class="form__group" id="blog">
+                <label for="blog__category">블로그</label>
+                <div id="blog__info">
+                    <select id="blog__category" name="blog__category">
+                        <option selected>---</option>
+                        <option>velog</option>
+                        <option>tistory</option>
+                    </select>
+                    <input type="text" id="blog__name" name="blog__name" placeholder="블로그 주소 입력">
+                </div>
+            </div>
+            <div class="form__group">
+                <label for="github">Github</label>
+                <input type="text" id="github" name="github">
+            </div>
+            <div class="form__group">
+                <button type="submit" id="submit">제출</button>
+            </div>
+        </form>
     </main>
+    <script type="module" src='script.js'></script>
+
 </body>
 
 </html>
