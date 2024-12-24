@@ -24,6 +24,30 @@ function converFileToBase64(file) {
     })
 }
 
+function validationForm(formData) {
+    const fields = [
+        { id: 'userId', name: '아이디' },
+        { id: 'userPw', name: '비밀번호' },
+        { id: 'name', name: '이름' },
+        { id: 'mbti', name: 'MBTI' },
+        { id: 'hobby', name: '취미' },
+        { id: 'bio', name: '자기소개' },
+        { id: 'blog__category', name: '블로그 카테고리' },
+        { id: 'blog__name', name: '블로그 주소' },
+        { id: 'github', name: '깃허브 주소' },
+    ];
+
+    for (const field of fields) {
+        if (!formData.get(`${field.id}`)) {
+            alert(`${field.name}을 입력해주세요.`);
+            document.getElementById(field.id).focus();
+            return false;
+        }
+    }
+
+    return true;
+}
+
 const memberForm = document.getElementById('member__form');
 
 memberForm.addEventListener('submit', async function (e) {
@@ -31,6 +55,8 @@ memberForm.addEventListener('submit', async function (e) {
 
     const formData = new FormData(memberForm);
 
+    const userId = formData.get('userId');
+    const userPw = formData.get('userPw');
     const userName = formData.get('name');
     const userMBTI = formData.get('mbti');
     const userHobby = formData.get('hobby');
@@ -53,6 +79,10 @@ memberForm.addEventListener('submit', async function (e) {
             alert('파일 변환 실패');
             return;
         }
+    } else {
+        alert('사진을 선택해주세요.');
+        document.getElementById('photo').focus();
+        return;
     }
 
     console.log(userPhotoFile);
@@ -73,8 +103,14 @@ memberForm.addEventListener('submit', async function (e) {
     //     }
     // }
 
+    if (!validationForm(formData)) {
+        return;
+    }
+
     try {
         let docs = {
+            userId: userId,
+            userPw: userPw,
             userName: userName,
             userMBTI: userMBTI,
             userHobby: userHobby,
