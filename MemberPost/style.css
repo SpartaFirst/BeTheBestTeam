@@ -22,6 +22,7 @@ ol {
     font-size: 1.5rem;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 #main {
@@ -47,6 +48,13 @@ ol {
     color: #333;
 }
 
+.form__group label::before {
+    content: '*'; 
+    color: red;   
+    margin-right: 4px; 
+    font-size: 1.2em;  
+}
+
 .form__group input, 
 .form__group select, 
 .form__group textarea {
@@ -56,6 +64,7 @@ ol {
     border-radius: 4px;
     outline: none;
     transition: border-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .form__group input:focus,
