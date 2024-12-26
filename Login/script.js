@@ -9,8 +9,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
 // Firebase 구성 정보 설정
@@ -114,6 +115,11 @@ function loginModal() {
     signInWithEmailAndPassword(auth, loginId, loginPassword)
       .then((userCredential) => {
         console.log("로그인 완료");
+        // 로컬 스토리지에 사용자 이메일 저장
+        localStorage.setItem("userEmail", loginId);
+        // console.log("userEmail : ", loginId);
+        modal.classList.remove("active");
+        alert("환영합니다.");
         // Signed up
         const user = userCredential.user;
         // ...
@@ -122,17 +128,19 @@ function loginModal() {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (errorCode === "auth/invalid-email") {
-          document.getElementById("alert").innerText = "이메일을 입력해주세요!"
+          document.getElementById("alert").innerText = "이메일을 입력해주세요!";
           // alert("이메일을 입력해주세요!");
           document.getElementById("loginId").focus();
         }
         if (errorCode === "auth/missing-password") {
-          document.getElementById("alert").innerText = "비밀번호를 입력해주세요!"
+          document.getElementById("alert").innerText =
+            "비밀번호를 입력해주세요!";
           // alert("비밀번호를 입력해주세요!");
           document.getElementById("loginPassword").focus();
         }
         if (errorCode === "auth/invalid-login-credentials") {
-          document.getElementById("alert").innerText = "ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다."
+          document.getElementById("alert").innerText =
+            "ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다.";
           // alert("ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다.");
         }
         console.log(errorCode, errorMessage);
@@ -140,5 +148,53 @@ function loginModal() {
       });
   });
 }
+
+document
+  .getElementsByClassName("nav__logout")[0]
+  .addEventListener("click", () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        alert("로그아웃 되었습니다.");
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error);
+        // An error happened.
+      });
+  });
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    document.getElementsByClassName("nav__login")[0].classList.add("hidden");
+    document
+      .getElementsByClassName("nav__logout")[0]
+      .classList.remove("hidden");
+    // ...
+  } else {
+    document.getElementsByClassName("nav__logout")[0].classList.add("hidden");
+    document.getElementsByClassName("nav__login")[0].classList.remove("hidden");
+    // User is signed out
+    // ...
+  }
+});
+
+// firebase Authentication으로 유저 email 받아오기 가능
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/auth.user
+//     const userEmail = user.email;
+//     console.log(userEmail);
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });
+
 // 페이지 로드 시 모달 생성
 window.addEventListener("DOMContentLoaded", loginModal);
