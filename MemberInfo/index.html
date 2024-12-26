@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1조가 최고조</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header class="header">
     <div class="header__title">1조가 최고조</div>
@@ -24,54 +26,159 @@
     <section class="profile__container">
       <div class="profile__left">
         <div class="profile__row">
-        <div class="profile__name">
-          <label for="userName" class="label">이름</label>
-          <input type="text" id="userName" placeholder="이름 입력" />
+          <div class="profile__name">
+            <label for="userName" class="label">이름</label>
+            <div id="userNameDisplay"></div>
+            <input type="text" id="userNameInput" class="hidden" placeholder="이름 입력" />
+          </div>
+          <div class="profile__mbti">
+            <label for="userMbti" class="label">MBTI</label>
+            <div id="userMbtiDisplay"></div>
+            <input type="text" id="userMbtiInput" class="hidden" placeholder="MBTI 입력" />
+          </div>
         </div>
-        <div class="profile__mbti">
-          <label for="userMbti" class="label">MBTI</label>
-          <input type="text" id="userMbti" placeholder="MBTI 입력" />
-        </div>
-      </div>
 
         <div class="info__box">
           <h2>자기소개</h2>
-          <textarea placeholder="자기소개를 입력하세요..."></textarea>
+          <div id="introDisplay" class="display-box"></div>
+          <textarea id="introTextarea" class="hidden" placeholder="자기소개를 입력하세요..."></textarea>
         </div>
 
         <div class="info__box">
           <h2>취미</h2>
-          <textarea placeholder="취미를 입력하세요..."></textarea>
+          <div id="hobbyDisplay" class="display-box"></div>
+          <textarea id="hobbyTextarea" class="hidden" placeholder="취미를 입력하세요..."></textarea>
         </div>
       </div>
 
       <div class="profile__right">
         <div class="profile__photo-container">
-          <img 
-          src="https://via.placeholder.com/250x300?text=Profile+Photo" 
-          alt="프로필 사진" 
-          class="profile__photo"
-          />
-          <button type="button" class="edit-btn">✎</button>
+          <img src="https://via.placeholder.com/250x300?text=Profile+Photo" alt="프로필 사진" class="profile__photo" />
+          <button type="button" class="edit-btn" id="editBtn">✎</button>
         </div>
 
         <div class="profile__links">
           <div class="blog">
             <label for="blogLink" class="label">블로그</label>
-            <input type="text" id="blogLink" placeholder="블로그 주소 입력" />
+            <div id="blogLinkDisplay"></div>
+            <input type="text" id="blogLink" class="hidden" placeholder="블로그 주소 입력" />
             <div class="blog-icons">
               <div class="icon velog">Velog</div>
               <div class="icon tistory">Tistory</div>
             </div>
           </div>
 
-            <div class="github">
-              <label for="githubLink" class="label">Github</label>
-              <input type="text" id="githubLink" placeholder="깃허브 주소 입력" />
-            </div>
+          <div class="github">
+            <label for="githubLink" class="label">Github</label>
+            <div id="githubLinkDisplay"></div>
+            <input type="text" id="githubLink" class="hidden" placeholder="깃허브 주소 입력" />
           </div>
         </div>
-      </section>
-    </main>
-  </body>
-  </html>
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    let userNameData = "이름을 입력해주세요.";
+    let userMbtiData = "MBTI를 입력해주세요.";
+    let introData = "자기소개를 작성해주세요.\n저는 OOO입니다.";
+    let hobbyData = "취미를 작성해주세요.";
+    let blogLinkData = "https://myblog.com";
+    let githubLinkData = "https://github.com";
+
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const userNameInput = document.getElementById('userNameInput');
+    const userMbtiDisplay = document.getElementById('userMbtiDisplay');
+    const userMbtiInput = document.getElementById('userMbtiInput');
+    const introDisplay = document.getElementById('introDisplay');
+    const introTextarea = document.getElementById('introTextarea');
+    const hobbyDisplay = document.getElementById('hobbyDisplay');
+    const hobbyTextarea = document.getElementById('hobbyTextarea');
+    const blogLinkDisplay = document.getElementById('blogLinkDisplay');
+    const blogLinkInput = document.getElementById('blogLink');
+    const githubLinkDisplay = document.getElementById('githubLinkDisplay');
+    const githubLinkInput = document.getElementById('githubLink');
+
+    const editBtn = document.getElementById('editBtn');
+
+    userNameDisplay.innerText = userNameData;
+    userMbtiDisplay.innerText = userMbtiData;
+    introDisplay.innerText = introData;
+    hobbyDisplay.innerText = hobbyData;
+    blogLinkDisplay.innerText = blogLinkData;
+    githubLinkDisplay.innerText = githubLinkData;
+
+    userNameInput.value = userNameData;
+    userMbtiInput.value = userMbtiData;
+    introTextarea.value = introData;
+    hobbyTextarea.value = hobbyData;
+    blogLinkInput.value = blogLinkData;
+    githubLinkInput.value = githubLinkData;
+
+    let isEditMode = false;
+
+    editBtn.addEventListener('click', () => {
+      isEditMode = !isEditMode;
+
+      if (isEditMode) {
+        editBtn.textContent = 'Save';
+
+        userNameDisplay.classList.add('hidden');
+        userNameInput.classList.remove('hidden');
+
+        userMbtiDisplay.classList.add('hidden');
+        userMbtiInput.classList.remove('hidden');
+
+        introDisplay.classList.add('hidden');
+        introTextarea.classList.remove('hidden');
+
+        hobbyDisplay.classList.add('hidden');
+        hobbyTextarea.classList.remove('hidden');
+
+        blogLinkDisplay.classList.add('hidden');
+        blogLinkInput.classList.remove('hidden');
+
+        githubLinkDisplay.classList.add('hidden');
+        githubLinkInput.classList.remove('hidden');
+      } else {
+        editBtn.textContent = '✎';
+
+        userNameData = userNameInput.value;
+        userMbtiData = userMbtiInput.value;
+        introData = introTextarea.value;
+        hobbyData = hobbyTextarea.value;
+        blogLinkData = blogLinkInput.value;
+        githubLinkData = githubLinkInput.value;
+
+        userNameDisplay.innerText = userNameData;
+        userMbtiDisplay.innerText = userMbtiData;
+        introDisplay.innerText = introData;
+        hobbyDisplay.innerText = hobbyData;
+        blogLinkDisplay.innerText = blogLinkData;
+        githubLinkDisplay.innerText = githubLinkData;
+
+        userNameDisplay.classList.remove('hidden');
+        userNameInput.classList.add('hidden');
+
+        userMbtiDisplay.classList.remove('hidden');
+        userMbtiInput.classList.add('hidden');
+
+        introDisplay.classList.remove('hidden');
+        introTextarea.classList.add('hidden');
+
+        hobbyDisplay.classList.remove('hidden');
+        hobbyTextarea.classList.add('hidden');
+
+        blogLinkDisplay.classList.remove('hidden');
+        blogLinkInput.classList.add('hidden');
+
+        githubLinkDisplay.classList.remove('hidden');
+        githubLinkInput.classList.add('hidden');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
