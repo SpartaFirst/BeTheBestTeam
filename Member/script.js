@@ -27,12 +27,13 @@ let docs = await getDocs(collection(db, "user"));
 docs.forEach((doc) => {
   let row = doc.data();
   console.log(row);
-  let userID = row.userID;
-  let userPW = row.userPW;
+  // let userID = row.userID;
+  // let userPW = row.userPW;
+  // let userHobby = row.userHobby;
+  // let userMBTI = row.userMBTI;
   let userName = row.userName;
   let userBio = row.userBio;
-  let userHobby = row.userHobby;
-  let userMBTI = row.userMBTI;
+  let userDeveloper = row.userDeveloper;
   let userBlogCategory = row.userBlogCategory;
   let userBlogName = row.userBlogName;
   let userGithub = row.userGithub;
@@ -43,7 +44,7 @@ docs.forEach((doc) => {
         <div class="section__desc">
           <div class="section__head">
             <h1>${userName}</h1>
-            <h4>개발자가 말대꾸?!</h4>
+            <h4>${userDeveloper || "개발자가 말대꾸?!"} </h4>
           </div>
           <p>
             ${userBio}
