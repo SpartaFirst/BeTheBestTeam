@@ -37,9 +37,6 @@ header h1 {
 }
 
 /** 멤버 섹션 */
-section {
-  align-items: center;
-}
 
 /** 멤버카드 메인 */
 .section__main {

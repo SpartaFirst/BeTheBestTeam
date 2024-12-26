@@ -39,7 +39,7 @@ docs.forEach((doc) => {
   let userGithub = row.userGithub;
   let userPhotoUrl = row.userPhotoUrl;
 
-  let sectionHtml = `<div class="section__main">
+  let sectionHtml = `<section class="section__main">
         <!-- 멤버 설명 -->
         <div class="section__desc">
           <div class="section__head">
@@ -77,7 +77,7 @@ docs.forEach((doc) => {
             
           </div>
         </div>
-      </div>`;
+      </section>`;
 
   main.innerHTML += sectionHtml;
 });
