@@ -156,6 +156,7 @@ document
     signOut(auth)
       .then(() => {
         alert("로그아웃 되었습니다.");
+        localStorage.clear();
         // Sign-out successful.
       })
       .catch((error) => {
