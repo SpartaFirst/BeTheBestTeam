@@ -124,6 +124,11 @@ input:focus {
     right: 10px;
 }
 
+#alert{
+  color: rgb(237, 72, 72);
+  text-wrap-style: balance;
+}
+
 /* 숨김 처리 */
 .hidden {
     display: none;

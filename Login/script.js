@@ -71,6 +71,8 @@ function loginModal() {
                     <input id="loginPassword" type="password" placeholder="비밀번호를 입력해주세요">
                 </div>
 
+                <div id = "alert"></div>
+
                 <footer>
                     <button id="loginBtn" class="footer__button" type="submit">Log in</button>
                     <button id="joinBtn" class="footer__button" type="submit">Join</button>
@@ -120,15 +122,18 @@ function loginModal() {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (errorCode === "auth/invalid-email") {
-          alert("이메일을 입력해주세요!");
+          document.getElementById("alert").innerText = "이메일을 입력해주세요!"
+          // alert("이메일을 입력해주세요!");
           document.getElementById("loginId").focus();
         }
         if (errorCode === "auth/missing-password") {
-          alert("비밀번호를 입력해주세요!");
+          document.getElementById("alert").innerText = "비밀번호를 입력해주세요!"
+          // alert("비밀번호를 입력해주세요!");
           document.getElementById("loginPassword").focus();
         }
         if (errorCode === "auth/invalid-login-credentials") {
-          alert("ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다.");
+          document.getElementById("alert").innerText = "ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다."
+          // alert("ID 혹은 비밀번호를 잘못 입력하셨거나 등록되지 않았습니다.");
         }
         console.log(errorCode, errorMessage);
         // ..
