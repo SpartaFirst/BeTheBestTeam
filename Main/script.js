@@ -7,7 +7,7 @@ const display = '4';
 const url = `https://openapi.naver.com/v1/search/news.json?query=${query}&display=${display}&start=1&sort=sim`;
 
 fetch(url, {
-    method: 'GET',
+    method: 'POST',
     headers: {
         'X-Naver-Client-Id': clientId,
         'X-Naver-Client-Secret': clientSecret
