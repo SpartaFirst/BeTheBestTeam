@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
-import { getFirestore, collection, addDoc} from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
 // import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyBoI6KU8CSsiSE31m7Z6HdjuQhcw02VfWw',
@@ -14,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // const storage = getStorage(app);
+const auth = getAuth(app);
 
 function converFileToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -21,7 +23,7 @@ function converFileToBase64(file) {
         reader.onload = () => resolve(reader.result);
         reader.onerror = (error) => reject(error);
         reader.readAsDataURL(file);
-    })
+    });
 }
 
 function validationForm(formData) {
@@ -43,6 +45,24 @@ function validationForm(formData) {
             alert(`${field.name}을 입력해주세요.`);
             document.getElementById(field.id).focus();
             return false;
+        }
+
+        if (field.id === 'userId') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+            if (!emailRegex.test(formData.get(`${field.id}`))) {
+                alert('아이디는 올바른 이메일 형식으로 입력해주세요. (예: example@domain.com)');
+                document.getElementById('userId').focus();
+                return false;
+            }
+        }
+
+        if (field.id === 'mbti') {
+            const mbtiRegex = /^[A-Z]{4}$/; 
+            if (!mbtiRegex.test(formData.get(`${field.id}`))) {
+                alert('MBTI는 영어 대문자 4글자로 입력해주세요. (예: INFP, ENTP)');
+                document.getElementById('mbti').focus();
+                return false;
+            }
         }
     }
 
@@ -109,25 +129,35 @@ memberForm.addEventListener('submit', async function (e) {
         return;
     }
 
-    try {
-        let docs = {
-            userId: userId,
-            userPw: userPw,
-            userName: userName,
-            userDeveloper: userDeveloper,
-            userMBTI: userMBTI,
-            userHobby: userHobby,
-            userBio: userBio,
-            userBlogCategory: userBlogCategory,
-            userBlogName: userBlogName,
-            userGithub: userGithub,
-            userPhotoUrl: userPhotoUrl || null,
-        };
-        console.log(docs);
-        await addDoc(collection(db, 'user'), docs);
-        alert('작성 완료!');
-    } catch (error) {
-        console.error('Firestore 저장 실패:', error);
-        alert('작성 실패');
-    }
+    createUserWithEmailAndPassword(auth, userId, userPw)
+        .then(async (userCredential) => {
+            const user = userCredential.user;
+
+            const docs = {
+                userName: userName,
+                userDeveloper: userDeveloper,
+                userMBTI: userMBTI,
+                userHobby: userHobby,
+                userBio: userBio,
+                userBlogCategory: userBlogCategory,
+                userBlogName: userBlogName,
+                userGithub: userGithub,
+                userPhotoUrl: userPhotoUrl || null,
+            };
+            console.log(docs);
+
+            try {
+                await addDoc(collection(db, 'user'), docs);
+                alert('작성 완료!');
+            } catch (error) {
+                console.error('Firestore 저장 실패:', error);
+                alert('작성 실패');
+            }
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('회원가입 오류:', errorMessage);
+            alert('회원가입 실패');
+        });
 });
