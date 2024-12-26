@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -15,12 +17,11 @@ ol {
 
 #header {
     width: 100%;
-    background-color: #4CAF50;
-    color: white;
+    font-family: "Rammetto One", serif;
+    color: lightcoral;
     text-align: center;
     padding: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 3rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
 }
@@ -70,7 +71,7 @@ ol {
 .form__group input:focus,
 .form__group select:focus,
 .form__group textarea:focus {
-    border-color: #4CAF50;
+    border-color: lightcoral;
 }
 
 textarea {
@@ -97,7 +98,7 @@ textarea {
 }
 
 #submit {
-    background-color: #4CAF50;
+    background-color: lightcoral;
     color: white;
     border: none;
     padding: 1rem;
@@ -108,5 +109,5 @@ textarea {
 }
 
 #submit:hover {
-    background-color: #45a049;
+    background-color: rgb(238, 94, 94);
 }
