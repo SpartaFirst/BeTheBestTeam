@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -15,18 +17,21 @@ ol {
 header {
   text-align: center;
   width: 1400px;
+  font-family: "Rammetto One", serif;
+  color: lightcoral;
 }
 header h1 {
   font-size: 3rem;
 }
 
+/* 구분선 */
 .division {
   border-top: 1px solid #d7d7d7;
   margin: 30px auto;
 }
 
 .division::after {
-  /* content: "◆"; */
+  content: "◆";
   position: relative;
   top: -13px;
 }
