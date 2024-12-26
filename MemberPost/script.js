@@ -92,7 +92,7 @@ memberForm.addEventListener('submit', async function (e) {
 
     // 이미지를 문자열로 변환 문자열 -> db에 저장
     // json server -> supabase
-    if (userPhotoFile) {
+    if (userPhotoFile) { 
         try {
             userPhotoUrl = await converFileToBase64(userPhotoFile);
             console.log('변환 파일 : ', userPhotoUrl);
@@ -134,6 +134,7 @@ memberForm.addEventListener('submit', async function (e) {
             const user = userCredential.user;
 
             const docs = {
+                userId : user.uid,
                 userName: userName,
                 userDeveloper: userDeveloper,
                 userMBTI: userMBTI,
@@ -145,7 +146,6 @@ memberForm.addEventListener('submit', async function (e) {
                 userPhotoUrl: userPhotoUrl || null,
             };
             console.log(docs);
-
             try {
                 await addDoc(collection(db, 'user'), docs);
                 alert('작성 완료!');
