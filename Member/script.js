@@ -16,13 +16,20 @@ const firebaseConfig = {
   appId: "1:916725484205:web:e6bc6963dff95693a39424",
 };
 
-const main = document.getElementById("main");
-
 // Firebase 인스턴스 초기화
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // console.log(db);
 
+// ScrollReveal
+const sr = ScrollReveal({
+  duration: 1000,
+  distance: "50px",
+  origin: "bottom",
+  reset: true,
+});
+
+const main = document.getElementById("main");
 let docs = await getDocs(collection(db, "user"));
 docs.forEach((doc) => {
   let row = doc.data();
@@ -39,7 +46,7 @@ docs.forEach((doc) => {
   let userGithub = row.userGithub;
   let userPhotoUrl = row.userPhotoUrl;
 
-  let sectionHtml = `<section class="section__main">
+  let sectionHtml = `<section class="section__main box">
         <!-- 멤버 설명 -->
         <div class="section__desc">
           <div class="section__head">
@@ -81,3 +88,5 @@ docs.forEach((doc) => {
 
   main.innerHTML += sectionHtml;
 });
+
+sr.reveal(".box");
