@@ -1,75 +1,76 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: "Noto Sans KR", sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  
-  .header {
-    position: relative;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color:#333(0, 0, 0);
-  }
-  
-  .header__title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-  }
-  
-  .nav a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .nav a:hover {
-    text-decoration: underline;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .nav-login-button {
-    font-size: 1rem;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #15617a;
-    color: #fff;
-    cursor: pointer;
-  }
-  .nav-login-button:hover {
-    background-color: #6eccf1;
-  }
-  
-  main {
-    max-width: 1000px;
-    margin: 2rem auto;
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  .profile__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 2rem;
-  }
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333(0, 0, 0);
+}
+
+.header__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav-login-button {
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #15617a;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-login-button:hover {
+  background-color: #6eccf1;
+}
+
+main {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+}
 
 .profile__left,
 .profile__right {
@@ -82,7 +83,7 @@
 .profile__row {
   display: flex;
   gap: 2rem;
-  align-items: center; 
+  align-items: center;
 }
 
 .label {
@@ -101,7 +102,7 @@
   border-radius: 4px;
   box-sizing: border-box;
 }
-  
+
 .info__box {
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -112,7 +113,7 @@
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
-  
+
 .info__box textarea {
   width: 100%;
   height: 100px;
@@ -124,7 +125,7 @@
 }
 
 .profile__photo-container {
-  position: relative; 
+  position: relative;
   width: max-content;
 }
 
@@ -151,21 +152,26 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .edit-btn:hover {
   background-color: #6eccf1;
 }
+
 .profile__links {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.blog {
+.blog,
+.github {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-#blogLink {
+
+#blogLink,
+#githubLink {
   width: 100%;
   box-sizing: border-box;
 }
@@ -174,6 +180,7 @@
   display: flex;
   gap: 0.5rem;
 }
+
 .icon {
   display: inline-block;
   padding: 0.3rem 0.6rem;
@@ -181,19 +188,25 @@
   border-radius: 4px;
   font-size: 0.8rem;
 }
+
 .velog {
   background-color: #20c997;
 }
+
 .tistory {
   background-color: #fa6462;
 }
 
-.github {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+/* ---------- div <-> input/textarea 토글 시 사용될 클래스 ---------- */
+.hidden {
+  display: none;
 }
-#githubLink {
-  width: 100%;
-  box-sizing: border-box;
+
+/* ---------- 자기소개 & 취미 보여줄 때 사용 ---------- */
+.display-box {
+  white-space: pre-wrap;
+  /* textarea 개행을 그대로 살려서 표시하기 위함 */
+  min-height: 100px;
+  /* 보기 좋게 어느 정도 높이 지정 */
+  padding: 0.5rem;
 }
