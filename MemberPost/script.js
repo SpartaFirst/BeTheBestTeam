@@ -29,6 +29,7 @@ function validationForm(formData) {
         { id: 'userId', name: '아이디' },
         { id: 'userPw', name: '비밀번호' },
         { id: 'name', name: '이름' },
+        { id: 'developer', name: '되고 싶은 개발자' },
         { id: 'mbti', name: 'MBTI' },
         { id: 'hobby', name: '취미' },
         { id: 'bio', name: '자기소개' },
@@ -58,6 +59,7 @@ memberForm.addEventListener('submit', async function (e) {
     const userId = formData.get('userId');
     const userPw = formData.get('userPw');
     const userName = formData.get('name');
+    const userDeveloper = formData.get('developer');
     const userMBTI = formData.get('mbti');
     const userHobby = formData.get('hobby');
     const userBio = formData.get('bio');
@@ -112,6 +114,7 @@ memberForm.addEventListener('submit', async function (e) {
             userId: userId,
             userPw: userPw,
             userName: userName,
+            userDeveloper: userDeveloper,
             userMBTI: userMBTI,
             userHobby: userHobby,
             userBio: userBio,
