@@ -13,7 +13,7 @@ ol {
   list-style: none;
 }
 
-#myBtn {
+.footer__button {
   background-color: rgb(70, 70, 133);
   color: white;
   border-radius: 5px;
@@ -23,7 +23,7 @@ ol {
   height: 40px;
 }
 
-#myBtn:hover {
+.footer__button:hover {
   background-color: rgb(14, 14, 44);
 }
 
@@ -36,4 +36,11 @@ input {
   outline: none;
   transition: border-color 0.3s;
   width: 300px;
+}
+
+.main__join {
+  display: none;
+}
+#registerBtn {
+  display: none;
 }
