@@ -3,8 +3,10 @@ console.log(weatherId);
 
 const locSection = document.querySelector(".loc");
 const tempSection = document.querySelector(".temp");
+const descSection = document.querySelector(".desc");
+const iconSection = document.querySelector(".icon");
 
-// 버튼 클릭 JS
+// JS
 document.addEventListener("DOMContentLoaded", function () {
   navigator.geolocation.getCurrentPosition(success);
 });
@@ -37,18 +39,28 @@ function getWeather(lat, lon) {
       console.log(json);
       const locSection = json.name;
       const tempSection = json.main.temp;
+      const descSection = json.weather[0].description;
 
       const locHtml = document.getElementsByClassName("loc")[0];
       const tempHtml = document.getElementsByClassName("temp")[0];
+      const descHtml = document.getElementsByClassName("desc")[0];
+
+      const icon = json.weather[0].icon;
+      const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
       locHtml.innerText = locSection;
       tempHtml.innerText = tempSection;
+      descHtml.innerText = descSection;
+      iconSection.setAttribute("src", iconURL);
     })
     .catch((error) => {
       // 에러 처리
       alert(error);
     });
 }
+
+// 로그아웃 버튼
+// css 조정
 
 // # id, . class
 const asdf = document.querySelector("#weather");

@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -5,6 +8,22 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background: linear-gradient(-45deg, rgb(255, 222, 219), rgb(255, 219, 250));
+  background-size: 400% 400%;
+  animation: colorChange 8s ease infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 li,
@@ -14,6 +33,7 @@ ol {
 }
 
 * {
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,11 +43,20 @@ ol {
   position: relative;
   width: 100%;
   background-color: #ffffff;
+  font-family: "Rammetto One", "Jua", serif;
+  font-weight: 400;
+  font-style: normal;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-size: cover;
+  background-attachment: fixed;
   color: #333(0, 0, 0);
+}
+
+.header > img {
+  width: 10%;
 }
 
 .header__title {
@@ -35,9 +64,15 @@ ol {
   font-weight: bold;
 }
 
+.icon {
+  width: 2rem;
+}
+
 .nav ul {
   display: flex;
   list-style: none;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
