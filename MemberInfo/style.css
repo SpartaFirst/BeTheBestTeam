@@ -26,6 +26,7 @@ body {
   font-weight: bold;
 }
 
+/*
 .nav ul {
   display: flex;
   list-style: none;
@@ -55,6 +56,7 @@ body {
 .nav-login-button:hover {
   background-color: #6eccf1;
 }
+*/
 
 main {
   max-width: 1000px;
@@ -197,16 +199,12 @@ main {
   background-color: #fa6462;
 }
 
-/* ---------- div <-> input/textarea 토글 시 사용될 클래스 ---------- */
 .hidden {
   display: none;
 }
 
-/* ---------- 자기소개 & 취미 보여줄 때 사용 ---------- */
 .display-box {
   white-space: pre-wrap;
-  /* textarea 개행을 그대로 살려서 표시하기 위함 */
   min-height: 100px;
-  /* 보기 좋게 어느 정도 높이 지정 */
   padding: 0.5rem;
 }
