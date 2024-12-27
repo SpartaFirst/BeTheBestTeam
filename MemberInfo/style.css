@@ -157,7 +157,7 @@ main {
   position: absolute;
   top: 10px;
   min-width: 35px;
-  right: 10px;
+  right: 50px;
   height: 35px;
   font-size: 1rem;
   background-color: lightcoral;
@@ -167,8 +167,25 @@ main {
   cursor: pointer;
 }
 
-.edit-btn:hover {
+.delete__btn{
+  position: absolute;
+  top: 10px;
+  min-width: 35px;
+  right: 10px;
+  height: 35px;
+  font-size: 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn:hover{
   background-color: rgb(238, 94, 94);
+}
+
+.delete__btn:hover{
+  background-color: rgb(194, 60, 60);
 }
 
 .profile__links {

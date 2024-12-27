@@ -7,8 +7,10 @@ import {
     where,
     doc,
     updateDoc,
+    deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
-// import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
+// Authentication에서도 삭제하기 위함...
+import { getAuth, deleteUser } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyBoI6KU8CSsiSE31m7Z6HdjuQhcw02VfWw',
@@ -43,7 +45,6 @@ function converFileToBase64(file) {
         reader.readAsDataURL(file); // 파일을 Base64로 변환
     });
 }
-
 
 // 추후에 querystring 받아서 uid값으로 검색
 const uid = urlValue;
@@ -117,7 +118,11 @@ docs.forEach((docsItem) => {
           </div>
         </div>
       </div>
-      ${login ? `<button type="button" class="edit-btn" id="editBtn">✎</button>` : ''}
+      ${
+          login
+              ? `<button type="button" class="edit-btn" id="editBtn">✎</button><button class="delete__btn">🗑️</button>`
+              : ''
+      }
     </section>`;
 
     // DOM 요소 가져오기
@@ -132,11 +137,12 @@ docs.forEach((docsItem) => {
     const blogLinkDisplay = document.getElementById('blogLinkDisplay');
     const blogLinkInput = document.getElementById('blogLink');
     const githubLinkDisplay = document.getElementById('githubLinkDisplay');
-  const githubLinkInput = document.getElementById('githubLink');
-  const profilePhotoInput = document.getElementById('profilePhotoInput');
-  const profilePhotoDisplay = document.getElementById('profilePhotoDisplay');
+    const githubLinkInput = document.getElementById('githubLink');
+    const profilePhotoInput = document.getElementById('profilePhotoInput');
+    const profilePhotoDisplay = document.getElementById('profilePhotoDisplay');
 
     const editBtn = document.getElementById('editBtn');
+    const deleteBtn = document.getElementsByClassName('delete__btn')[0];
 
     // input, textarea에 초기값 세팅
     userNameInput.value = userName;
@@ -144,12 +150,34 @@ docs.forEach((docsItem) => {
     introTextarea.value = userBio;
     hobbyTextarea.value = userHobby;
     blogLinkInput.value = userBlogName;
-  githubLinkInput.value = userGithub;
+    githubLinkInput.value = userGithub;
 
     let isEditMode = false;
 
+    deleteBtn.addEventListener('click', async () => {
+        const userDocRef = doc(db, 'user', docsItem.id); 
+        const confirmDelete = confirm('정말로 삭제하시겠습니까?'); 
+        if (confirmDelete) {
+            try {
+                await deleteDoc(userDocRef);
+                console.log('Document successfully deleted!');
+
+                const auth = getAuth(app);
+                const user = auth.currentUser;
+                if (user) {
+                    await deleteUser(user); 
+                    console.log('Authentication user successfully deleted!');
+                }
+                // 삭제 후 리다이렉트
+                alert('사용자가 삭제되었습니다.');
+                window.location.href = '../Main/Member.html';
+            } catch (error) {
+                alert('삭제 중 오류가 발생했습니다.');
+            }
+        }
+    });
     // edit 버튼 클릭 이벤트
-    editBtn.addEventListener('click', async() => {
+    editBtn.addEventListener('click', async () => {
         isEditMode = !isEditMode;
 
         if (isEditMode) {
@@ -174,24 +202,25 @@ docs.forEach((docsItem) => {
 
             githubLinkDisplay.classList.add('hidden');
             githubLinkInput.classList.remove('hidden');
-          
+
             profilePhotoDisplay.classList.add('hidden');
             profilePhotoInput.classList.remove('hidden');
         } else {
             editBtn.textContent = '✎';
             editBtn.classList.remove('toggle__on');
-          
-          // 사진 수정 안 했을 시 기존 photoUrl 가져옴
-          let basePhoto = ''
+
+            // 사진 수정 안 했을 시 기존 photoUrl 가져옴
+            let basePhoto = '';
             console.log(profilePhotoInput.value);
 
-          if (profilePhotoInput.value) {
-            basePhoto = await converFileToBase64(profilePhotoInput.value);
-          } else {
-            basePhoto = userPhotoUrl;
-          }
+            if (profilePhotoInput.files.length > 0) {
+                const file = profilePhotoInput.files[0];
+                basePhoto = await converFileToBase64(file);
+                console.log(basePhoto);
+            } else {
+                basePhoto = userPhotoUrl;
+            }
 
-          
             const updatedData = {
                 userName: userNameInput.value,
                 userMBTI: userMbtiInput.value,
@@ -199,10 +228,10 @@ docs.forEach((docsItem) => {
                 userHobby: hobbyTextarea.value,
                 userBlogName: blogLinkInput.value,
                 userGithub: githubLinkInput.value,
-                userPhotoUrl: basePhoto
+                userPhotoUrl: basePhoto,
             };
-          console.log(updatedData);
-            const userDocRef = doc(db, 'user', docsItem.id); 
+            console.log(updatedData);
+            const userDocRef = doc(db, 'user', docsItem.id);
             updateDoc(userDocRef, updatedData)
                 .then(() => {
                     console.log('Document successfully updated!');
