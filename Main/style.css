@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(to right, rgb(252, 228, 255) 25%, rgb(230, 213, 255));
 }
 
 li,ul,ol {
@@ -13,14 +14,14 @@ li,ul,ol {
 
 main {
     display: flex;
-    width: 80%;
-    margin: 0px auto 0px auto;
+    width: 100%;
+    margin: 0px;
 }
 
 main>p {
     height: fit-content;
-    width: 30%;
-    margin: auto 15% auto 5%;
+    width: 35%;
+    margin: auto auto auto auto;
     font-family: "Rammetto One", serif;
     font-weight: 400;
     font-style: normal;
@@ -29,21 +30,26 @@ main>p {
 }
 
 nav {
-    font-size: xx-large;
+    font-size: 460%;
     font-family: "Rammetto One", serif;
     font-weight: 400;
     font-style: normal;
     text-align: center;
-    width: 60%;
+    color: rgb(139, 47, 47);
+    width: 100%;
+    height: fit-content;
+    margin: 0px 0px 0px 0px;
 }
 
 main > img {
-    margin: 0% 5% 0% 15%;
-    width: 30%;
+    margin: 0% 5% 0% 7%;
+    width: 33%;
 }
 
 footer {
     height: fit-content;
     width: 100%;
-    margin: 0px auto 0px 25%;
+}
+footer > p{
+    margin: 0px auto 0px 13%;
 }
