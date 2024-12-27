@@ -188,25 +188,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// console.log(!localStorage.length);
-// if (localStorage.length === 0) {
-//   document.getElementsByClassName("nav__logout")[0].classList.add("hidden");
-//   document.getElementsByClassName("nav__login")[0].classList.remove("hidden");
-// }
-
-// firebase Authentication으로 유저 email 받아오기 가능
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/auth.user
-//     const userEmail = user.email;
-//     console.log(userEmail);
-//     // ...
-//   } else {
-//     // User is signed out
-//     // ...
-//   }
-// });
 
 // 페이지 로드 시 모달 생성
 window.addEventListener("DOMContentLoaded", loginModal);

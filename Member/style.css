@@ -8,15 +8,20 @@ body {
   justify-content: center;
   align-items: center;
   cursor: none;
+  background: url(../image/background.jpg);
+  background-attachment: fixed;
+  background-size: cover;
 }
 li,
 ul,
 ol {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: black;
+  cursor: none;
 }
 
 header {
@@ -63,6 +68,7 @@ header h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 40%);
   margin-bottom: 30px;
   transition: box-shadow 0.3s ease;
+  background-color: #ffffff95;
 }
 
 .section__main:hover {
@@ -103,9 +109,7 @@ h4 {
   text-align: left;
   line-height: 2.2rem;
 }
-a {
-  cursor: none;
-}
+
 .section__more {
   display: flex;
   flex-direction: row;
@@ -169,7 +173,7 @@ a {
 .section__info {
   display: flex;
   flex-direction: column;
-  background-color: #f2f4ff;
+  background-color: #f2f4ff60;
   width: 17%;
   margin: 30px;
   border-radius: 15px;

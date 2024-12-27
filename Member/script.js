@@ -15,6 +15,7 @@ const firebaseConfig = {
   messagingSenderId: "916725484205",
   appId: "1:916725484205:web:e6bc6963dff95693a39424",
 };
+
 // Firebase 인스턴스 초기화
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -71,7 +72,6 @@ docs.forEach((doc) => {
               <img class = "flower" src = ${flowerImg}></img>
             </div>
             </a>
-          
         <!-- 멤버 정보 -->
         <div class="section__info">
           <div class="section__img">
@@ -96,7 +96,6 @@ docs.forEach((doc) => {
               ><img src="./image/velogicon.png" alt="velog"
             /></a>`
           }
-            
           </div>
         </div>
         </section>

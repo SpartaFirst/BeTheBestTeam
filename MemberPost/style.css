@@ -7,7 +7,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right, rgb(252, 228, 255) 25%, rgb(230, 213, 255));
+    background: url(../image/background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 li,
