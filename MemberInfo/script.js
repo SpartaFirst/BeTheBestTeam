@@ -68,7 +68,7 @@ docs.forEach((docsItem) => {
     document.getElementById('main').innerHTML = `<section class="profile__container">
       <div class="profile__row">
         <div class="profile__name">
-          <label for="userName" class="label">name</label>
+          <label for="userName" class="label">Name</label>
           <div id="userNameDisplay">${userName}</div>
           <input type="text" id="userNameInput" class="hidden" placeholder="이름 입력" />
         </div>
@@ -80,8 +80,8 @@ docs.forEach((docsItem) => {
       </div>
       <div class="profile__bio">
         <div class="profile__left">
-          <div class="info__box">
-            <h2>자기소개</h2>
+        <div class="info__box">
+           <h2>자기소개</h2>
             <div id="introDisplay" class="display-box">${userBio}</div>
             <textarea id="introTextarea" class="hidden" placeholder="자기소개를 입력하세요..."></textarea>
           </div>
