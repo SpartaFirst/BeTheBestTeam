@@ -121,6 +121,7 @@ function loginModal() {
         // console.log("userEmail : ", loginId);
         modal.classList.remove("active");
         alert("환영합니다.");
+        location.reload(true);
         // Signed up
         // const user = userCredential.user;
         // ...
@@ -168,21 +169,30 @@ document
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
-  if (user) {
+  if (user && localStorage.length) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     document.getElementsByClassName("nav__login")[0].classList.add("hidden");
     document
       .getElementsByClassName("nav__logout")[0]
       .classList.remove("hidden");
+    console.log("로그인중..");
+    console.log(user);
     // ...
   } else {
     document.getElementsByClassName("nav__logout")[0].classList.add("hidden");
     document.getElementsByClassName("nav__login")[0].classList.remove("hidden");
+    console.log("로그아웃");
     // User is signed out
     // ...
   }
 });
+
+// console.log(!localStorage.length);
+// if (localStorage.length === 0) {
+//   document.getElementsByClassName("nav__logout")[0].classList.add("hidden");
+//   document.getElementsByClassName("nav__login")[0].classList.remove("hidden");
+// }
 
 // firebase Authentication으로 유저 email 받아오기 가능
 // onAuthStateChanged(auth, (user) => {
