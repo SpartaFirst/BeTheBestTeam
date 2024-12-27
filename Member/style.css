@@ -71,6 +71,7 @@ header h1 {
 
 /* 멤버 설명 */
 .section__desc {
+  position: relative;
   margin: 30px;
   width: 70%;
 }
@@ -109,7 +110,7 @@ a {
   display: flex;
   flex-direction: row;
   display: inline-block;
-  width: 150px;
+  width: 180px;
   height: 35px;
   position: absolute;
   right: 311px;
@@ -121,6 +122,18 @@ a {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   /* cursor: pointer; */
   transition: transform 0.3s ease;
+  z-index: 1;
+}
+.flower {
+  position: absolute;
+  right: 60px;
+  bottom: 0px;
+  width: 60px;
+  /* border: 1px solid #000; */
+  z-index: -1;
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
 }
 
 .section__more p {
@@ -138,6 +151,10 @@ a {
 .section__more:hover {
   background-color: #eeeeeea2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.section__more:hover .flower {
+  transform: translateY(-30px) rotate(30deg);
+  opacity: 1;
 }
 
 .section__more:hover p {

@@ -15,29 +15,24 @@ const firebaseConfig = {
   messagingSenderId: "916725484205",
   appId: "1:916725484205:web:e6bc6963dff95693a39424",
 };
-
 // Firebase 인스턴스 초기화
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // console.log(db);
 
-// cursor 이벤트
-document.addEventListener("mousemove", (e) => {
-  let mouseX = e.pageX + 5;
-  let mouseY = e.pageY + 5;
-
-  let cursor = document.getElementById("cursor");
-  cursor.style.left = mouseX + "px";
-  cursor.style.top = mouseY + "px";
-});
-
-// ScrollReveal 스크롤 이벤트
-const sr = ScrollReveal({
-  duration: 1000,
-  distance: "50px",
-  origin: "bottom",
-  reset: true,
-});
+const flowers = {
+  flower1: "./image/flower1.png",
+  flower2: "./image/flower2.png",
+  flower3: "./image/flower3.png",
+  flower4: "./image/flower4.png",
+};
+// flower 랜덤으로 뽑기
+const rdmFlower = () => {
+  const keys = Object.keys(flowers);
+  const rdmKey = keys[Math.floor(Math.random() * keys.length)];
+  return flowers[rdmKey];
+};
+console.log(flowers);
 
 const main = document.getElementById("main");
 let docs = await getDocs(collection(db, "user"));
@@ -56,8 +51,9 @@ docs.forEach((doc) => {
   let userGithub = row.userGithub;
   let userPhotoUrl = row.userPhotoUrl;
 
+  const flowerImg = rdmFlower();
+
   let sectionHtml = `
-        
         <section class="section__main box">
         <!-- 멤버 설명 -->
         <div class="section__desc">
@@ -69,7 +65,12 @@ docs.forEach((doc) => {
             ${userBio}
           </p>
           <a href="../MemberInfo/index.html?id=${userId}"></div>
-        <div class = "section__more"><p>More Info<p> <span>→</span></div></a>
+            <div class = "section__more">
+              <p>MORE INFO</p>
+              <span>→</span>
+              <img class = "flower" src = ${flowerImg}></img>
+            </div>
+            </a>
           
         <!-- 멤버 정보 -->
         <div class="section__info">
@@ -104,6 +105,22 @@ docs.forEach((doc) => {
   main.innerHTML += sectionHtml;
 });
 
-
+// ScrollReveal 스크롤 이벤트
+const sr = ScrollReveal({
+  duration: 1000,
+  distance: "50px",
+  origin: "bottom",
+  reset: true,
+});
 
 sr.reveal(".box");
+
+// cursor 이벤트
+document.addEventListener("mousemove", (e) => {
+  let mouseX = e.pageX + 5;
+  let mouseY = e.pageY + 5;
+
+  let cursor = document.getElementById("cursor");
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
