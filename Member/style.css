@@ -13,6 +13,10 @@ ul,
 ol {
   list-style: none;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
 
 header {
   text-align: center;
@@ -40,6 +44,7 @@ header h1 {
 
 /** 멤버카드 메인 */
 .section__main {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 1400px;
@@ -83,6 +88,49 @@ h4 {
   text-align: left;
   line-height: 2.2rem;
 }
+
+.section__more {
+  display: flex;
+  flex-direction: row;
+  display: inline-block;
+  width: 150px;
+  height: 35px;
+  position: absolute;
+  right: 311px;
+  bottom: 31px;
+  font-size: 1.3rem;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 34px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.section__more p{
+  transition: transform 0.3s ease;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.section__more span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.section__more:hover{
+background-color: #eeeeeea2;
+}
+
+.section__more:hover p{
+  transform: scale(1.1);
+}
+
+.section__more:hover span {
+  transform: translateX(10px);
+}
+
 /* 멤버 정보 */
 .section__info {
   display: flex;

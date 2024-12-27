@@ -33,11 +33,11 @@ const main = document.getElementById("main");
 let docs = await getDocs(collection(db, "user"));
 docs.forEach((doc) => {
   let row = doc.data();
-  console.log(row);
-  // let userID = row.userID;
+  // console.log(row);
   // let userPW = row.userPW;
   // let userHobby = row.userHobby;
   // let userMBTI = row.userMBTI;
+  let userId = row.userId;
   let userName = row.userName;
   let userBio = row.userBio;
   let userDeveloper = row.userDeveloper;
@@ -46,17 +46,21 @@ docs.forEach((doc) => {
   let userGithub = row.userGithub;
   let userPhotoUrl = row.userPhotoUrl;
 
-  let sectionHtml = `<section class="section__main box">
+  let sectionHtml = `
+        
+        <section class="section__main box">
         <!-- 멤버 설명 -->
         <div class="section__desc">
           <div class="section__head">
             <h1>${userName}</h1>
-            <h4>${userDeveloper || "개발자가 말대꾸?!"} </h4>
+            <h4>${userDeveloper} </h4>
           </div>
           <p>
             ${userBio}
           </p>
-        </div>
+          <a href="../MemberInfo/index.html?id=${userId}"></div>
+        <div class = "section__more"><p>More Info<p> <span>→</span></div></a>
+          
         <!-- 멤버 정보 -->
         <div class="section__info">
           <div class="section__img">
@@ -84,8 +88,9 @@ docs.forEach((doc) => {
             
           </div>
         </div>
-      </section>`;
-
+        </section>
+        `;
+        
   main.innerHTML += sectionHtml;
 });
 
