@@ -10,6 +10,7 @@ body {
     background: url(../image/background.jpg);
     background-attachment: fixed;
     background-size: cover;
+    cursor: none;
 }
 
 li,
@@ -41,6 +42,13 @@ header h1 {
   z-index: 2;
   top: -13px;
 }
+#cursor {
+    position: absolute;
+    z-index: 999;
+  }
+  #cursor > img {
+    width: 50px;
+  }
 
 #main {
     width: 100%;
@@ -53,6 +61,7 @@ header h1 {
     flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 30px;
+    cursor: default;
 }
 
 .form__group {
