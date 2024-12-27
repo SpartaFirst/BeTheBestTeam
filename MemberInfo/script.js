@@ -5,6 +5,8 @@ import {
     getDocs,
     query,
     where,
+    doc,
+    updateDoc,
 } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
 // import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
 
@@ -19,28 +21,51 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-// 추후에 querystring 받아서 uid값으로 비교
-const name = '임재원';
-let userInfo = [];
-const findUser = query(collection(db, 'user'), where('userName', '==', name));
+
+// localStorage와 query값 비교해서 작성자인지 확인
+let login = false;
+const loginUser = localStorage.getItem('userEmail');
+const urlParams = new URLSearchParams(window.location.search);
+const urlValue = urlParams.get('id');
+
+console.log(loginUser, urlValue);
+
+if (loginUser === urlValue) {
+    login = true;
+}
+
+// 사진 재업로드 시 필요
+function converFileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file); // 파일을 Base64로 변환
+    });
+}
+
+
+// 추후에 querystring 받아서 uid값으로 검색
+const uid = urlValue;
+const findUser = query(collection(db, 'user'), where('userId', '==', uid));
 let docs = await getDocs(findUser);
 
-docs.forEach((doc) => {
-  console.log(doc.data());
-  let row = doc.data();
-  //  초기 데이터
-  let userID = row.userId;
-  let userName = row.userName;
-  let userBio = row.userBio;
-  let userMBTI = row.userMBTI;
-  let userHobby = row.userHobby;
-  let userDeveloper = row.userDeveloper;
-  let userBlogCategory = row.userBlogCategory;
-  let userBlogName = row.userBlogName;
-  let userGithub = row.userGithub;
-  let userPhotoUrl = row.userPhotoUrl;
+docs.forEach((docsItem) => {
+    console.log(docsItem.data());
+    let row = docsItem.data();
+    //  초기 데이터
+    let userID = row.userId;
+    let userName = row.userName;
+    let userBio = row.userBio;
+    let userMBTI = row.userMBTI;
+    let userHobby = row.userHobby;
+    let userDeveloper = row.userDeveloper;
+    let userBlogCategory = row.userBlogCategory;
+    let userBlogName = row.userBlogName;
+    let userGithub = row.userGithub;
+    let userPhotoUrl = row.userPhotoUrl;
 
-  document.getElementById('main').innerHTML = `<section class="profile__container">
+    document.getElementById('main').innerHTML = `<section class="profile__container">
       <div class="profile__row">
         <div class="profile__name">
           <label for="userName" class="label">name</label>
@@ -70,7 +95,8 @@ docs.forEach((doc) => {
         
         <div class="profile__right">
           <div class="profile__photo-container">
-            <img src=${userPhotoUrl} alt="프로필 사진" class="profile__photo" />
+            <img id="profilePhotoDisplay" src=${userPhotoUrl} alt="프로필 사진" class="profile__photo" />
+            <input type="file" id="profilePhotoInput" class="hidden" />
           </div>
         
           <div class="profile__links">
@@ -91,98 +117,101 @@ docs.forEach((doc) => {
           </div>
         </div>
       </div>
-                <button type="button" class="edit-btn" id="editBtn">✎</button>
+      ${login ? `<button type="button" class="edit-btn" id="editBtn">✎</button>` : ''}
     </section>`;
 
-  // DOM 요소 가져오기
-  const userNameDisplay = document.getElementById('userNameDisplay');
-  const userNameInput = document.getElementById('userNameInput');
-  const userMbtiDisplay = document.getElementById('userMbtiDisplay');
-  const userMbtiInput = document.getElementById('userMbtiInput');
-  const introDisplay = document.getElementById('introDisplay');
-  const introTextarea = document.getElementById('introTextarea');
-  const hobbyDisplay = document.getElementById('hobbyDisplay');
-  const hobbyTextarea = document.getElementById('hobbyTextarea');
-  const blogLinkDisplay = document.getElementById('blogLinkDisplay');
-  const blogLinkInput = document.getElementById('blogLink');
-  const githubLinkDisplay = document.getElementById('githubLinkDisplay');
+    // DOM 요소 가져오기
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const userNameInput = document.getElementById('userNameInput');
+    const userMbtiDisplay = document.getElementById('userMbtiDisplay');
+    const userMbtiInput = document.getElementById('userMbtiInput');
+    const introDisplay = document.getElementById('introDisplay');
+    const introTextarea = document.getElementById('introTextarea');
+    const hobbyDisplay = document.getElementById('hobbyDisplay');
+    const hobbyTextarea = document.getElementById('hobbyTextarea');
+    const blogLinkDisplay = document.getElementById('blogLinkDisplay');
+    const blogLinkInput = document.getElementById('blogLink');
+    const githubLinkDisplay = document.getElementById('githubLinkDisplay');
   const githubLinkInput = document.getElementById('githubLink');
+  const profilePhotoInput = document.getElementById('profilePhotoInput');
+  const profilePhotoDisplay = document.getElementById('profilePhotoDisplay');
 
-  const editBtn = document.getElementById('editBtn');
+    const editBtn = document.getElementById('editBtn');
 
-  // input, textarea에 초기값 세팅
-  userNameInput.value = userName;
-  userMbtiInput.value = userMBTI;
-  introTextarea.value = userBio;
-  hobbyTextarea.value = userHobby;
-  blogLinkInput.value = userBlogName;
+    // input, textarea에 초기값 세팅
+    userNameInput.value = userName;
+    userMbtiInput.value = userMBTI;
+    introTextarea.value = userBio;
+    hobbyTextarea.value = userHobby;
+    blogLinkInput.value = userBlogName;
   githubLinkInput.value = userGithub;
 
-  let isEditMode = false;
+    let isEditMode = false;
 
-  // edit 버튼 클릭 이벤트
-  editBtn.addEventListener('click', () => {
-    isEditMode = !isEditMode;
+    // edit 버튼 클릭 이벤트
+    editBtn.addEventListener('click', async() => {
+        isEditMode = !isEditMode;
 
-    if (isEditMode) {
-      // Edit 모드
-      editBtn.textContent = 'Save';
+        if (isEditMode) {
+            // Edit 모드
+            editBtn.textContent = 'Save';
+            editBtn.classList.add('toggle__on');
+            // 숨김 처리 시 visibility로 유지
+            userNameDisplay.classList.add('hidden');
+            userNameInput.classList.remove('hidden');
 
-      // 숨김 처리 시 visibility로 유지
-      userNameDisplay.classList.add('hidden');
-      userNameInput.classList.remove('hidden');
+            userMbtiDisplay.classList.add('hidden');
+            userMbtiInput.classList.remove('hidden');
 
-      userMbtiDisplay.classList.add('hidden');
-      userMbtiInput.classList.remove('hidden');
+            introDisplay.classList.add('hidden');
+            introTextarea.classList.remove('hidden');
 
-      introDisplay.classList.add('hidden');
-      introTextarea.classList.remove('hidden');
+            hobbyDisplay.classList.add('hidden');
+            hobbyTextarea.classList.remove('hidden');
 
-      hobbyDisplay.classList.add('hidden');
-      hobbyTextarea.classList.remove('hidden');
+            blogLinkDisplay.classList.add('hidden');
+            blogLinkInput.classList.remove('hidden');
 
-      blogLinkDisplay.classList.add('hidden');
-      blogLinkInput.classList.remove('hidden');
+            githubLinkDisplay.classList.add('hidden');
+            githubLinkInput.classList.remove('hidden');
+          
+            profilePhotoDisplay.classList.add('hidden');
+            profilePhotoInput.classList.remove('hidden');
+        } else {
+            editBtn.textContent = '✎';
+            editBtn.classList.remove('toggle__on');
+          
+          // 사진 수정 안 했을 시 기존 photoUrl 가져옴
+          let basePhoto = ''
+            console.log(profilePhotoInput.value);
 
-      githubLinkDisplay.classList.add('hidden');
-      githubLinkInput.classList.remove('hidden');
-    } else {
-      // Save 모드
-      editBtn.textContent = '✎';
+          if (profilePhotoInput.value) {
+            basePhoto = await converFileToBase64(profilePhotoInput.value);
+          } else {
+            basePhoto = userPhotoUrl;
+          }
 
-      // 입력된 값을 다시 반영
-      userNameData = userNameInput.value;
-      userMbtiData = userMbtiInput.value;
-      introData = introTextarea.value;
-      hobbyData = hobbyTextarea.value;
-      blogLinkData = blogLinkInput.value;
-      githubLinkData = githubLinkInput.value;
-
-      userNameDisplay.innerText = userNameData;
-      userMbtiDisplay.innerText = userMbtiData;
-      introDisplay.innerText = introData;
-      hobbyDisplay.innerText = hobbyData;
-      blogLinkDisplay.innerText = blogLinkData;
-      githubLinkDisplay.innerText = githubLinkData;
-
-      // 숨김 처리 복구
-      userNameDisplay.classList.remove('hidden');
-      userNameInput.classList.add('hidden');
-
-      userMbtiDisplay.classList.remove('hidden');
-      userMbtiInput.classList.add('hidden');
-
-      introDisplay.classList.remove('hidden');
-      introTextarea.classList.add('hidden');
-
-      hobbyDisplay.classList.remove('hidden');
-      hobbyTextarea.classList.add('hidden');
-
-      blogLinkDisplay.classList.remove('hidden');
-      blogLinkInput.classList.add('hidden');
-
-      githubLinkDisplay.classList.remove('hidden');
-      githubLinkInput.classList.add('hidden');
-    }
-  })
+          
+            const updatedData = {
+                userName: userNameInput.value,
+                userMBTI: userMbtiInput.value,
+                userBio: introTextarea.value,
+                userHobby: hobbyTextarea.value,
+                userBlogName: blogLinkInput.value,
+                userGithub: githubLinkInput.value,
+                userPhotoUrl: basePhoto
+            };
+          console.log(updatedData);
+            const userDocRef = doc(db, 'user', docsItem.id); 
+            updateDoc(userDocRef, updatedData)
+                .then(() => {
+                    console.log('Document successfully updated!');
+                    location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error updating document:', error);
+                    alert('저장 중 오류가 발생했습니다.');
+                });
+        }
+    });
 });
