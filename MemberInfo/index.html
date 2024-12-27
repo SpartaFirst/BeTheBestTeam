@@ -11,15 +11,21 @@
 <body>
   <header class="header">
     <div class="header__title">1조가 최고조</div>
-    <nav class="nav">
-      <ul>
-        <li><a href="#">About our Team</a></li>
-        <li><a href="#">Members</a></li>
-        <li>
-          <button class="nav-login-button">Login</button>
-        </li>
-      </ul>
-    </nav>
+    <!-- 
+      <nav class="nav">
+        <ul>
+          <li><a href="#">About our Team</a></li>
+          <li><a href="#">Members</a></li>
+          <li>
+            <button class="nav-login-button">Login</button>
+          </li>
+        </ul>
+      </nav>
+    -->
+  </header>
+
+  <header id="header">
+    Member Info
   </header>
 
   <main>
@@ -78,107 +84,7 @@
     </section>
   </main>
 
-
-  <script>
-    let userNameData = "이름을 입력해주세요.";
-    let userMbtiData = "MBTI를 입력해주세요.";
-    let introData = "자기소개를 작성해주세요.\n저는 OOO입니다.";
-    let hobbyData = "취미를 작성해주세요.";
-    let blogLinkData = "https://myblog.com";
-    let githubLinkData = "https://github.com";
-
-    const userNameDisplay = document.getElementById('userNameDisplay');
-    const userNameInput = document.getElementById('userNameInput');
-    const userMbtiDisplay = document.getElementById('userMbtiDisplay');
-    const userMbtiInput = document.getElementById('userMbtiInput');
-    const introDisplay = document.getElementById('introDisplay');
-    const introTextarea = document.getElementById('introTextarea');
-    const hobbyDisplay = document.getElementById('hobbyDisplay');
-    const hobbyTextarea = document.getElementById('hobbyTextarea');
-    const blogLinkDisplay = document.getElementById('blogLinkDisplay');
-    const blogLinkInput = document.getElementById('blogLink');
-    const githubLinkDisplay = document.getElementById('githubLinkDisplay');
-    const githubLinkInput = document.getElementById('githubLink');
-
-    const editBtn = document.getElementById('editBtn');
-
-    userNameDisplay.innerText = userNameData;
-    userMbtiDisplay.innerText = userMbtiData;
-    introDisplay.innerText = introData;
-    hobbyDisplay.innerText = hobbyData;
-    blogLinkDisplay.innerText = blogLinkData;
-    githubLinkDisplay.innerText = githubLinkData;
-
-    userNameInput.value = userNameData;
-    userMbtiInput.value = userMbtiData;
-    introTextarea.value = introData;
-    hobbyTextarea.value = hobbyData;
-    blogLinkInput.value = blogLinkData;
-    githubLinkInput.value = githubLinkData;
-
-    let isEditMode = false;
-
-    editBtn.addEventListener('click', () => {
-      isEditMode = !isEditMode;
-
-      if (isEditMode) {
-        editBtn.textContent = 'Save';
-
-        userNameDisplay.classList.add('hidden');
-        userNameInput.classList.remove('hidden');
-
-        userMbtiDisplay.classList.add('hidden');
-        userMbtiInput.classList.remove('hidden');
-
-        introDisplay.classList.add('hidden');
-        introTextarea.classList.remove('hidden');
-
-        hobbyDisplay.classList.add('hidden');
-        hobbyTextarea.classList.remove('hidden');
-
-        blogLinkDisplay.classList.add('hidden');
-        blogLinkInput.classList.remove('hidden');
-
-        githubLinkDisplay.classList.add('hidden');
-        githubLinkInput.classList.remove('hidden');
-      } else {
-        editBtn.textContent = '✎';
-
-        userNameData = userNameInput.value;
-        userMbtiData = userMbtiInput.value;
-        introData = introTextarea.value;
-        hobbyData = hobbyTextarea.value;
-        blogLinkData = blogLinkInput.value;
-        githubLinkData = githubLinkInput.value;
-
-        userNameDisplay.innerText = userNameData;
-        userMbtiDisplay.innerText = userMbtiData;
-        introDisplay.innerText = introData;
-        hobbyDisplay.innerText = hobbyData;
-        blogLinkDisplay.innerText = blogLinkData;
-        githubLinkDisplay.innerText = githubLinkData;
-
-        userNameDisplay.classList.remove('hidden');
-        userNameInput.classList.add('hidden');
-
-        userMbtiDisplay.classList.remove('hidden');
-        userMbtiInput.classList.add('hidden');
-
-        introDisplay.classList.remove('hidden');
-        introTextarea.classList.add('hidden');
-
-        hobbyDisplay.classList.remove('hidden');
-        hobbyTextarea.classList.add('hidden');
-
-        blogLinkDisplay.classList.remove('hidden');
-        blogLinkInput.classList.add('hidden');
-
-        githubLinkDisplay.classList.remove('hidden');
-        githubLinkInput.classList.add('hidden');
-      }
-    });
-  </script>
-
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
