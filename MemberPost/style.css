@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(to right, rgb(252, 228, 255) 25%, rgb(230, 213, 255));
 }
 
 li,
@@ -15,27 +16,39 @@ ol {
     list-style: none;
 }
 
-#header {
-    width: 100%;
-    font-family: "Rammetto One", serif;
-    color: lightcoral;
-    text-align: center;
-    padding: 1rem;
-    font-size: 3rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+header {
+  text-align: center;
+  width: 1400px;
+  font-family: "Rammetto One", serif;
+  color: lightcoral;
+}
+header h1 {
+  font-size: 3rem;
+}
+
+/* 구분선 */
+.division {
+  border-top: 1px solid #d7d7d7;
+  margin: 30px auto;
+}
+
+.division::after {
+  content: "◆";
+  position: relative;
+  top: -13px;
 }
 
 #main {
     width: 100%;
     max-width: 600px;
-    background-color: white;
+    background-color: rgba(255, 255, 255);
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    margin-bottom: 30px;
 }
 
 .form__group {
@@ -50,14 +63,14 @@ ol {
 }
 
 .form__group label::before {
-    content: '*'; 
-    color: red;   
-    margin-right: 4px; 
-    font-size: 1.2em;  
+    content: '*';
+    color: red;
+    margin-right: 4px;
+    font-size: 1.2em;
 }
 
-.form__group input, 
-.form__group select, 
+.form__group input,
+.form__group select,
 .form__group textarea {
     padding: 0.5rem;
     font-size: 1rem;
@@ -85,15 +98,15 @@ textarea {
     gap: 1rem;
 }
 
-#blog__info{
+#blog__info {
     display: flex;
 }
 
-#blog__category{
+#blog__category {
     flex: 1;
 }
 
-#blog__name{
+#blog__name {
     flex: 6;
 }
 
