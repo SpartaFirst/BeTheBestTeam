@@ -7,6 +7,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: none;
 }
 li,
 ul,
@@ -26,6 +27,14 @@ header {
 }
 header h1 {
   font-size: 3rem;
+}
+
+#cursor {
+  position: absolute;
+  z-index: 999;
+}
+#cursor > img {
+  width: 50px;
 }
 
 /* 구분선 */
@@ -51,8 +60,13 @@ header h1 {
   height: 300px;
   justify-content: space-between;
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 40%);
   margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+.section__main:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 멤버 설명 */
@@ -88,7 +102,9 @@ h4 {
   text-align: left;
   line-height: 2.2rem;
 }
-
+a {
+  cursor: none;
+}
 .section__more {
   display: flex;
   flex-direction: row;
@@ -103,11 +119,11 @@ h4 {
   text-align: center;
   line-height: 34px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: transform 0.3s ease;
 }
 
-.section__more p{
+.section__more p {
   transition: transform 0.3s ease;
   display: inline-block;
   padding: 0;
@@ -119,11 +135,12 @@ h4 {
   transition: transform 0.3s ease;
 }
 
-.section__more:hover{
-background-color: #eeeeeea2;
+.section__more:hover {
+  background-color: #eeeeeea2;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.section__more:hover p{
+.section__more:hover p {
   transform: scale(1.1);
 }
 
@@ -141,6 +158,7 @@ background-color: #eeeeeea2;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 .section__img {
   margin: 20px auto;
   width: 57%;
@@ -175,9 +193,7 @@ background-color: #eeeeeea2;
   height: 100%;
 }
 
-/* .section__velog {
-  display: none;
+.section__link img:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.2);
 }
-.section__tistory {
-  display: none;
-} */

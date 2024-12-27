@@ -21,7 +21,17 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // console.log(db);
 
-// ScrollReveal
+// cursor 이벤트
+document.addEventListener("mousemove", (e) => {
+  let mouseX = e.pageX + 5;
+  let mouseY = e.pageY + 5;
+
+  let cursor = document.getElementById("cursor");
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
+
+// ScrollReveal 스크롤 이벤트
 const sr = ScrollReveal({
   duration: 1000,
   distance: "50px",
@@ -90,8 +100,10 @@ docs.forEach((doc) => {
         </div>
         </section>
         `;
-        
+
   main.innerHTML += sectionHtml;
 });
+
+
 
 sr.reveal(".box");
