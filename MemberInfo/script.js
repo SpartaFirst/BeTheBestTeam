@@ -150,10 +150,8 @@ docs.forEach((docsItem) => {
     let isEditMode = false;
 
     deleteBtn.addEventListener('click', async () => {
-      const userDocRef = doc(db, 'user', docsItem.id); 
-      const auth = getAuth(app);
-      const user = auth.currentUser;
-        const confirmDelete = confirm('정말로 삭제하시겠습니까?'); 
+        const userDocRef = doc(db, 'user', docsItem.id);
+        const confirmDelete = confirm('정말로 삭제하시겠습니까?');
         if (confirmDelete) {
             try {
                 await deleteDoc(userDocRef);
@@ -163,7 +161,8 @@ docs.forEach((docsItem) => {
                 const user = auth.currentUser;
                 console.log(user);
                 if (user) {
-                    await deleteUser(user); 
+                    await deleteUser(user);
+                    localStorage.clear();
                     console.log('Authentication user successfully deleted!');
                 }
                 // 삭제 후 리다이렉트
