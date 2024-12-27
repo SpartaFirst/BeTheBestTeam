@@ -115,13 +115,14 @@ function loginModal() {
     signInWithEmailAndPassword(auth, loginId, loginPassword)
       .then((userCredential) => {
         console.log("로그인 완료");
+        const user = userCredential.user;
         // 로컬 스토리지에 사용자 이메일 저장
-        localStorage.setItem("userEmail", loginId);
+        localStorage.setItem("userEmail", user.uid);
         // console.log("userEmail : ", loginId);
         modal.classList.remove("active");
         alert("환영합니다.");
         // Signed up
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // ...
       })
       .catch((error) => {
