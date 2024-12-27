@@ -137,6 +137,9 @@ main {
 }
 
 .profile__photo-container {
+  display: flex;
+  align-items: center;
+  height: 70%;
   position: relative;
   width: max-content;
 }
