@@ -4,26 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
-  <!--  <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css" />
   </head>
-  
+
   <body>
-    <nav class="header lan_kr">
-        <button
-          class="menu_bt"
-          style="
-            translate: none;
-            rotate: none;
-            scale: none;
-            transform: translate(0px, 0px);
-          "
-        >1조가 최고조</button>
-      <span>
-        <div><button>About our Team</button>
-        </div>
-        <div><button>Member</button></div>
-        <div><button>Login</button></div>
-    </span>
+    <!-- class css 태그주소 범용적 , id 독립적 //  -->
+    <header class="header">
+      <div onclick="location.href='../Main/index.html'">1조가 최고조</div>
+      <!-- div 현재 페이지에서 url-->
+      <nav class="nav">
+        <ul>
+          <li id="weather">날씨</li>
+          <li><a href="../MemberInfo/index.html">About our Team</a></li>
+          <li><a href="../Member/index.html">Members</a></li>
+          <li>
+            <button
+              type="button"
+              class="nav-login-button"
+              onclick="location.href='../Login/index.html'"
+            >
+              Login
+            </button>
+          </li>
+        </ul>
+      </nav>
     </header>
+    <script src="/Nav/script.js"></script>
   </body>
 </html>
