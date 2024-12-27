@@ -81,38 +81,33 @@ docs.forEach((docsItem) => {
       </div>
       <div class="profile__bio">
         <div class="profile__left">
-        <div class="info__box">
-           <h2>자기소개</h2>
+          <div class="info__box">
+            <h2>자기소개</h2>
             <div id="introDisplay" class="display-box">${userBio}</div>
             <textarea id="introTextarea" class="hidden" placeholder="자기소개를 입력하세요..."></textarea>
           </div>
-        
           <div class="info__box">
             <h2>취미</h2>
             <div id="hobbyDisplay" class="display-box">${userHobby}</div>
             <textarea id="hobbyTextarea" class="hidden" placeholder="취미를 입력하세요..."></textarea>
           </div>
         </div>
-        
         <div class="profile__right">
           <div class="profile__photo-container">
             <img id="profilePhotoDisplay" src=${userPhotoUrl} alt="프로필 사진" class="profile__photo" />
             <input type="file" id="profilePhotoInput" class="hidden" />
           </div>
-        
           <div class="profile__links">
             <div class="blog">
               <label for="blogLink" class="label">Blog</label>
-              <img class='blog-icons' src="./image/velogicon.png">
-              <div id="blogLinkDisplay">${userBlogName}</div>
+              <img class='blog-icons' src="./image/${userBlogCategory}.png">
+              <div id="blogLinkDisplay"><a href=${userBlogName}>${userBlogName}</a></div>
               <input type="text" id="blogLink" class="hidden" placeholder="블로그 주소 입력" />
-        
             </div>
-        
             <div class="github">
               <label for="githubLink" class="label">Github</label>
-              <img class='blog-icons' src="./image/githubicon.png">
-              <div id="githubLinkDisplay">${userGithub}</div>
+              <img class='blog-icons' src="./image/github.png">
+              <div id="githubLinkDisplay"><a href=${userGithub}>${userGithub}</a></div>
               <input type="text" id="githubLink" class="hidden" placeholder="깃허브 주소 입력" />
             </div>
           </div>
@@ -155,7 +150,9 @@ docs.forEach((docsItem) => {
     let isEditMode = false;
 
     deleteBtn.addEventListener('click', async () => {
-        const userDocRef = doc(db, 'user', docsItem.id); 
+      const userDocRef = doc(db, 'user', docsItem.id); 
+      const auth = getAuth(app);
+      const user = auth.currentUser;
         const confirmDelete = confirm('정말로 삭제하시겠습니까?'); 
         if (confirmDelete) {
             try {
@@ -164,13 +161,14 @@ docs.forEach((docsItem) => {
 
                 const auth = getAuth(app);
                 const user = auth.currentUser;
+                console.log(user);
                 if (user) {
                     await deleteUser(user); 
                     console.log('Authentication user successfully deleted!');
                 }
                 // 삭제 후 리다이렉트
                 alert('사용자가 삭제되었습니다.');
-                window.location.href = '../Main/Member.html';
+                window.location.href = '../Member/index.html';
             } catch (error) {
                 alert('삭제 중 오류가 발생했습니다.');
             }

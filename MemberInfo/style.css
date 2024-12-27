@@ -14,6 +14,20 @@ ol {
   list-style: none;
 }
 
+.profile__container a{
+  color: inherit;
+  text-decoration: none;
+}
+
+#blogLinkDisplay  a:hover{
+
+  font-weight: bold;
+}
+
+#githubLinkDisplay a:hover{
+  font-weight: bold;
+}
+
 header {
   text-align: center;
   width: 1400px;
