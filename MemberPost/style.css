@@ -17,6 +17,7 @@ ol {
 }
 
 header {
+  margin-top: 100px;
   text-align: center;
   width: 1400px;
   font-family: "Rammetto One", serif;
@@ -35,6 +36,7 @@ header h1 {
 .division::after {
   content: "◆";
   position: relative;
+  z-index: 2;
   top: -13px;
 }
 

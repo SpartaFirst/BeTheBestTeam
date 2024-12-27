@@ -3,6 +3,21 @@ import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/fireba
 // import { getStorage, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('../Nav/index.html') 
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById('navbar__container').innerHTML = data;
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '../Nav/style.css';
+            document.head.appendChild(link);
+        })
+        .catch((error) => console.error('Error loading navbar:', error));
+});
+
+
 const firebaseConfig = {
     apiKey: 'AIzaSyBoI6KU8CSsiSE31m7Z6HdjuQhcw02VfWw',
     authDomain: 'bethebestteam-8ce27.firebaseapp.com',
@@ -148,7 +163,7 @@ memberForm.addEventListener('submit', async function (e) {
             console.log(docs);
             try {
                 await addDoc(collection(db, 'user'), docs);
-                alert('작성 완료!');
+                window.location.href = '../Main/index.html';
             } catch (error) {
                 console.error('Firestore 저장 실패:', error);
                 alert('작성 실패');
