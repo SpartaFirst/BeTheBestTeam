@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
 
 body {
   margin: 0;
@@ -26,6 +27,7 @@ a {
 
 header {
   text-align: center;
+  margin: 100px 0 0 0;
   width: 1400px;
   font-family: "Rammetto One", serif;
   color: lightcoral;
@@ -58,6 +60,7 @@ header h1 {
 
 /** 멤버카드 메인 */
 .section__main {
+  font-family: "Rammetto One", "Jua", serif;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -68,7 +71,7 @@ header h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 40%);
   margin-bottom: 30px;
   transition: box-shadow 0.3s ease;
-  background-color: #ffffff95;
+  background-color: #ffffff;
 }
 
 .section__main:hover {
@@ -113,13 +116,15 @@ h4 {
 .section__more {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   display: inline-block;
   width: 180px;
   height: 35px;
   position: absolute;
   right: 311px;
   bottom: 31px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border-radius: 15px;
   text-align: center;
   line-height: 34px;
