@@ -9,32 +9,32 @@
 
   <body>
     <!-- class css 태그주소 범용적 , id 독립적 //  -->
-    <header class="header">
+    <nav class="nav">
       <img src="메인-로고.png" onclick="location.href='../Main/index.html'" />
       <!-- div 현재 페이지에서 url-->
-      <nav class="nav">
+      <div class="nav__list">
         <ul>
-          <li id="weather">오늘의 날씨</li>
-          <li class="loc"></li>
-          <li class="temp"></li>
-          <li class="desc"></li>
-          <img class="icon" />
+          <div id="weather__container">
+            <li class="weather">오늘의 날씨</li>
+            <li class="loc"></li>
+            <li class="temp"></li>
+            <li class="desc"></li>
+            <img class="icon" />
+          </div>
           <!-- 날씨에 getWeather 넣는거 질문, 이미지?도 여쭤볼것-->
           <!-- js요소선택검색 -->
-          <li><a href="../MemberInfo/index.html">About our Team</a></li>
           <li><a href="../Member/index.html">Members</a></li>
           <li>
-            <button
+            <a href="../Login/index.html"
               type="button"
               class="nav-login-button"
-              onclick="location.href='../Login/index.html'"
             >
               Login
-            </button>
+            </a>
           </li>
         </ul>
-      </nav>
-    </header>
+      </div>
+    </nav>
     <script src="/Nav/script.js"></script>
   </body>
 </html>
