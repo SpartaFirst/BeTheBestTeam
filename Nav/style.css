@@ -8,9 +8,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  overflow: visible;
   background: linear-gradient(-45deg, rgb(255, 222, 219), rgb(255, 219, 250));
-  background-size: 400% 400%;
   animation: colorChange 8s ease infinite;
 }
 
@@ -44,8 +43,11 @@ a{
 }
 
 .nav {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
   background-color: #ffffff;
   font-family: "Rammetto One", "Jua", serif;
   font-weight: 400;
@@ -56,11 +58,12 @@ a{
   justify-content: space-between;
   background-size: cover;
   background-attachment: fixed;
-  color: #333(0, 0, 0);
+  color: #333;
+  box-shadow: 0 4px 2px -2px rgb(255, 175, 175);
 }
 
 .nav > img {
-  width: 6%;
+  width: 95px;
 }
 
 .nav__title {
