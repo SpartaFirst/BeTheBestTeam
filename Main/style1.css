@@ -1,0 +1,243 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: -1;
+    animation: changeBackgroundColor 2s ease-in-out forwards 1s;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#main__main h3 {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    color: lightcoral;
+    background-color: transparent;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    animation: showWhoWeAre 1s ease-out forwards, fadeOutWhoWeAre 1s ease-out forwards 2.5s;
+}
+
+@keyframes showWhoWeAre {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutWhoWeAre {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes changeBackgroundColor {
+    0% {
+        background-color: white;
+    }
+    25% {
+        background-color: #f8d7da;
+    }
+    50% {
+        background-color: lightcoral;
+    }
+    75% {
+        background-color: #f8d7da;
+    }
+    100% {
+        background-color: lightcoral;
+    }
+}
+
+.team__logo {
+    position: absolute;
+    top: 30%;
+    left: -150px;
+    transform: translateX(-100%);
+    opacity: 0;
+    animation: rollInFromLeft 1.5s ease-out forwards 2.5s;
+}
+
+@keyframes rollInFromLeft {
+    0% {
+        transform: translateX(-100%) rotate(-360deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(90%);
+        opacity: 1;
+    }
+}
+
+.team__logo img {
+    width: 450px;
+}
+
+.main__info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 40%;
+    right: -300px;
+    transform: translateX(100%);
+    width: 700px;
+    padding: 20px 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: slideFromRight 1.5s ease-out forwards 4s;
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-80%);
+        opacity: 1;
+    }
+}
+
+.main__info h2 {
+    font-size: 1.8rem;
+    color: lightcoral;
+    margin-bottom: 20px;
+}
+
+.main__info .team__explain {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.main__info div p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.main__info div p .name {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #d9534f;
+    background: #ffe4e4;
+    padding: 3px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.team__name {
+    gap: 0;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.bounce-text {
+    display: inline-block;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.bounce-text:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bounce-text:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+/* .name 요소 */
+.name {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #d9534f;
+    background: #ffe4e4;
+    padding: 3px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    animation: bounce-name 0.5s ease-in-out infinite;  /* 애니메이션 정의 */
+}
+
+/* 순차적으로 애니메이션 딜레이 */
+.name:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.name:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.name:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.name:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.name:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.name:nth-child(6) {
+    animation-delay: 1s;
+}
+
+/* bounce 애니메이션 정의 */
+@keyframes bounce-name {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
