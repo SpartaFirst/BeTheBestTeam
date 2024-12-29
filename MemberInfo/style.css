@@ -12,6 +12,9 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 li,
 ul,
