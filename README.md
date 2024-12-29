@@ -41,7 +41,7 @@
 ## Example
 
 ```
-git commit -am 'feat (#189) : 게시판 작성 기능 구현'
+git commit -am  ✨ update : 게시판 작성 기능 구현'
 ```
 
 # 디렉토리 구조 및 네이밍 컨벤션
