@@ -1,261 +1,264 @@
-@import url("https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: url(../image/background.jpg);
-  background-attachment: fixed;
-  background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url(../image/background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
 }
 li,
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 }
 
-.profile__container a{
-  color: inherit;
-  text-decoration: none;
+.profile__container a {
+    color: inherit;
+    text-decoration: none;
 }
 
-#blogLinkDisplay  a:hover{
-
-  font-weight: bold;
+#blogLinkDisplay a:hover {
+    font-weight: bold;
 }
 
-#githubLinkDisplay a:hover{
-  font-weight: bold;
+#githubLinkDisplay a:hover {
+    font-weight: bold;
 }
 
 header {
-  text-align: center;
-  width: 1400px;
-  font-family: "Rammetto One", serif;
-  color: lightcoral;
+    text-align: center;
+    width: 1400px;
+    margin: 100px 0 0 0;
+    font-family: 'Rammetto One', serif;
+    color: lightcoral;
 }
+
 header h1 {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 /* 구분선 */
 .division {
-  border-top: 1px solid #d7d7d7;
-  margin: 30px auto;
+    border-top: 1px solid #d7d7d7;
+    margin: 30px auto;
 }
 
 .division::after {
-  content: "◆";
-  position: relative;
-  top: -13px;
+    content: '◆';
+    position: relative;
+    top: -13px;
 }
 
 main {
-  max-width: 1000px;
-  min-width: 1000px;
-  margin: 2rem auto;
-  background-color: #ffffffec;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Rammetto One', 'Jua', serif;
+    max-width: 1000px;
+    min-width: 1000px;
+    margin: 2rem auto;
+    background-color: #ffffffec;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .profile__container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 .profile__bio {
-  display: flex;
+    display: flex;
 }
 
 .profile__left {
-  width: 70%;
-  max-width: 668px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    width: 70%;
+    max-width: 668px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .profile__right {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
 .profile__row {
-  display: flex;
-  margin-left: 2.5rem;
-  gap: 5rem;
-  align-items: center;
-  font-size: 2.5rem;
+    display: flex;
+    margin-left: 2.5rem;
+    gap: 5rem;
+    align-items: center;
+    font-size: 2.5rem;
 }
 
 .profile__row label {
-  margin: 0 20px 0 0;
+    margin: 0 20px 0 0;
 }
 
 .profile__name {
-  display: flex;
-  align-items: baseline;
-  max-width: 252.56px;
+    display: flex;
+    align-items: baseline;
+    max-width: 300px;
 }
 
 .profile__mbti {
-  display: flex;
-  align-items: baseline;
+    display: flex;
+    align-items: baseline;
 }
 
 .label {
-  display: block;
-  font-weight: bold;
+    display: block;
+    font-weight: bold;
 }
 
 .profile__row input,
 .profile__left textarea,
 .profile__right input {
-  width: 100%;
-  font-size: 0.95rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    width: 100%;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .info__box {
-  /* background-color: #f5f5f5; */
-  /* border-radius: 8px; */
-  margin: 1.5rem;
-  padding: 1rem;
+    /* background-color: #f5f5f5; */
+    /* border-radius: 8px; */
+    margin: 1.5rem;
+    padding: 1rem;
 }
 
 .info__box h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  padding: 0.2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.2rem;
 }
 
 .info__box textarea {
-  width: 100%;
-  height: 100px;
-  resize: vertical;
-  padding: 0.5rem;
-  font-size: 0.95rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .profile__photo-container {
-  display: flex;
-  align-items: center;
-  height: 70%;
-  position: relative;
-  width: max-content;
+    display: flex;
+    align-items: center;
+    height: 70%;
+    position: relative;
+    width: max-content;
 }
 
 .profile__photo {
-  width: 250px;
-  height: 300px;
-  background: #eee;
-  border-radius: 4%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
+    width: 250px;
+    height: 300px;
+    background: #eee;
+    border-radius: 4%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
 }
 
 .edit-btn {
-  position: absolute;
-  top: 10px;
-  min-width: 35px;
-  right: 50px;
-  height: 35px;
-  font-size: 1rem;
-  background-color: lightcoral;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    min-width: 35px;
+    right: 50px;
+    height: 35px;
+    font-size: 1rem;
+    background-color: lightcoral;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.delete__btn{
-  position: absolute;
-  top: 10px;
-  min-width: 35px;
-  right: 10px;
-  height: 35px;
-  font-size: 1rem;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.delete__btn {
+    position: absolute;
+    top: 10px;
+    min-width: 35px;
+    right: 10px;
+    height: 35px;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.edit-btn:hover{
-  background-color: rgb(238, 94, 94);
+.edit-btn:hover {
+    background-color: rgb(238, 94, 94);
 }
 
-.delete__btn:hover{
-  background-color: rgb(194, 60, 60);
+.delete__btn:hover {
+    background-color: rgb(194, 60, 60);
 }
 
 .profile__links {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .blog,
 .github {
-  display: flex;
-  gap: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 #blogLink,
 #githubLink {
-  width: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .blog-icons {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .icon {
-  display: inline-block;
-  padding: 0.3rem 0.6rem;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 0.8rem;
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8rem;
 }
 
 .velog {
-  background-color: #20c997;
+    background-color: #20c997;
 }
 
 .tistory {
-  background-color: #fa6462;
+    background-color: #fa6462;
 }
 
 /* ---------- div <-> input/textarea 토글 시 사용될 클래스 ---------- */
 .hidden {
-  display: none;
+    display: none;
 }
 
 /* ---------- 자기소개 & 취미 보여줄 때 사용 ---------- */
 .display-box {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  white-space: pre-wrap;
-  /* textarea 개행을 그대로 살려서 표시하기 위함 */
-  min-height: 100px;
-  /* 보기 좋게 어느 정도 높이 지정 */
-  padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    /* textarea 개행을 그대로 살려서 표시하기 위함 */
+    min-height: 100px;
+    /* 보기 좋게 어느 정도 높이 지정 */
+    padding: 0.5rem;
 }

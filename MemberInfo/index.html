@@ -9,65 +9,14 @@
 </head>
 
 <body>
+  <nav id="nav__container"></nav>
   <header>
-    <h1>Members</h1>
+    <h1>Member</h1>
     <div class="division"></div>
   </header>
 
   <main id="main">
-    <section class="profile__container">
-      <div class="profile__left">
-        <div class="profile__row">
-          <div class="profile__name">
-            <label for="userName" class="label">이름</label>
-            <div id="userNameDisplay"></div>
-            <input type="text" id="userNameInput" class="hidden" placeholder="이름 입력" />
-          </div>
-          <div class="profile__mbti">
-            <label for="userMbti" class="label">MBTI</label>
-            <div id="userMbtiDisplay"></div>
-            <input type="text" id="userMbtiInput" class="hidden" placeholder="MBTI 입력" />
-          </div>
-        </div>
-
-        <div class="info__box">
-          <h2>자기소개</h2>
-          <div id="introDisplay" class="display-box"></div>
-          <textarea id="introTextarea" class="hidden" placeholder="자기소개를 입력하세요..."></textarea>
-        </div>
-
-        <div class="info__box">
-          <h2>취미</h2>
-          <div id="hobbyDisplay" class="display-box"></div>
-          <textarea id="hobbyTextarea" class="hidden" placeholder="취미를 입력하세요..."></textarea>
-        </div>
-      </div>
-
-      <div class="profile__right">
-        <div class="profile__photo-container">
-          <img src="https://via.placeholder.com/250x300?text=Profile+Photo" alt="프로필 사진" class="profile__photo" />
-          <button type="button" class="edit-btn" id="editBtn">✎</button>
-        </div>
-
-        <div class="profile__links">
-          <div class="blog">
-            <label for="blogLink" class="label">블로그</label>
-            <div id="blogLinkDisplay"></div>
-            <input type="text" id="blogLink" class="hidden" placeholder="블로그 주소 입력" />
-            <div class="blog-icons">
-              <div class="icon velog">Velog</div>
-              <div class="icon tistory">Tistory</div>
-            </div>
-          </div>
-
-          <div class="github">
-            <label for="githubLink" class="label">Github</label>
-            <div id="githubLinkDisplay"></div>
-            <input type="text" id="githubLink" class="hidden" placeholder="깃허브 주소 입력" />
-          </div>
-        </div>
-      </div>
-    </section>
+    
   </main>
 
   <script type="module" src="script.js"></script>
