@@ -187,27 +187,24 @@ docs.forEach((docsItem) => {
       const confirmDelete = confirm("정말로 삭제하시겠습니까?");
       const auth = getAuth(app);
       // 사용자 상태확인
-      onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, async (user) => {
         if (user) {
-            // 사용자 삭제제
+          // 사용자 삭제제
           if (confirmDelete) {
             try {
               //   const user = auth.currentUser;
               console.log(user);
-              deleteUser(user)
-                .then(() => {
-                  console.log("Authentication user successfully deleted!");
-                })
-                .catch((error) => {
-                  console.error("Error deleting user:", error);
-                });
-
+              // deleteUser 비동기 처리
+              await deleteUser(user);
+              console.log("Authentication user successfully deleted!");
               localStorage.removeItem("userEmail");
-              deleteDoc(userDocRef);
+              // deleteDoc 비동기 처리
+              await deleteDoc(userDocRef);
               console.log("Document successfully deleted!");
               // 삭제 후 리다이렉트
               alert("사용자가 삭제되었습니다.");
             } catch (error) {
+              console.error("Error deleting user:", error);
               alert("삭제 중 오류가 발생했습니다.");
             }
           }
