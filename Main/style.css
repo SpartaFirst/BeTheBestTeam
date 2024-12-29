@@ -20,6 +20,7 @@ main {
   width: 80%;
   margin: 5% auto;
 }
+
 #backgroundImg {
   position: absolute;
   width: 100vw;
@@ -68,7 +69,6 @@ main {
   }
   100% {
     width: 0;
-    /*right: 0;*/
     left: 100%;
   }
 }
@@ -101,9 +101,9 @@ main {
 }
 
 .team__logo {
-  transform: scale(0.5); /* 처음에는 보이지 않도록 크기를 0으로 설정 */
+  transform: scale(0.5);
   opacity: 0;
-  animation: expandAndRoll 5s 3s ease-in forwards;
+  animation: expandAndRoll 3s 1s ease-in forwards;
 }
 
 @keyframes expandAndRoll {
@@ -136,40 +136,81 @@ main {
   right: -40%;
   top: 38%;
   justify-content: center;
-  background-color: rgb(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.85); /* 더 밝은 배경색 */
   margin: 0px 0px 5% 0px;
   text-align: center;
   border-radius: 30px;
-  animation: slider 2s 6s ease-in forwards;
+  animation: slider 2s 4s ease-in forwards;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
 }
 
 .main__info h2 {
   margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 */
 }
+
 .main__info div {
   display: grid;
-  grid-template-columns: repeat(2, 200px);
-  grid-template-rows: repeat(3, 45px);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
   justify-content: center;
   align-items: center;
+  gap: 10px;
+}
+
+.main__info div p {
+  margin: 0;
+  text-align: center;
+  color: #333; /* 글자색 변경 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 텍스트 그림자 */
+}
+
+.main__info div p span.name {
+  font-weight: bold;
+  color: lightcoral;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* 강조 텍스트 그림자 */
 }
 
 @keyframes slider {
   0% {
+    right: -40%;
   }
   100% {
     right: 10%;
   }
 }
 
-/* nav {
-      font-size: 460%;
-      font-family: "Rammetto One", serif;
-      font-weight: 400;
-      font-style: normal;
-      text-align: center;
-      color: rgb(139, 47, 47);
-      width: 100%;
-      height: fit-content;
-      margin: 0px 0px 0px 0px;
-  } */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes slider {
+  0% {
+    right: -50%;
+  }
+  100% {
+    right: 10%;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
