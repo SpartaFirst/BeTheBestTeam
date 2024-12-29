@@ -187,14 +187,14 @@ docs.forEach((docsItem) => {
                     const auth = getAuth(app);
                     const user = auth.currentUser;
                     console.log(user);
+                    localStorage.removeItem('userEmail');
                     if (user) {
                         await deleteUser(user);
-                        localStorage.removeItem('userEmail');
                         console.log('Authentication user successfully deleted!');
                     }
                     // 삭제 후 리다이렉트
                     alert('사용자가 삭제되었습니다.');
-                    window.reload();
+                    window.location.href = '../Member/index.html'
                 } catch (error) {
                     alert('삭제 중 오류가 발생했습니다.');
                 }
