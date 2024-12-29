@@ -291,3 +291,23 @@ docs.forEach((docsItem) => {
     });
   }
 });
+
+// ScrollReveal 스크롤 이벤트
+const sr = ScrollReveal({
+  duration: 1000,
+  distance: "50px",
+  origin: "bottom",
+  reset: true,
+});
+
+sr.reveal(".box");
+
+// cursor 이벤트
+document.addEventListener("mousemove", (e) => {
+  let mouseX = e.pageX + 5;
+  let mouseY = e.pageY + 5;
+
+  let cursor = document.getElementById("cursor");
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
