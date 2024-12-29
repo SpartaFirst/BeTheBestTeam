@@ -189,7 +189,7 @@ docs.forEach((docsItem) => {
                     console.log(user);
                     if (user) {
                         await deleteUser(user);
-                        localStorage.clear();
+                        localStorage.removeItem('userEmail');
                         console.log('Authentication user successfully deleted!');
                     }
                     // 삭제 후 리다이렉트
