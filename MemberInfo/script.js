@@ -194,7 +194,7 @@ docs.forEach((docsItem) => {
                     }
                     // 삭제 후 리다이렉트
                     alert('사용자가 삭제되었습니다.');
-                    window.location.href = '../Member/index.html';
+                    window.reload();
                 } catch (error) {
                     alert('삭제 중 오류가 발생했습니다.');
                 }
