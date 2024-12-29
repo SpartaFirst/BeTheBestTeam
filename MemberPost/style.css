@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 body {
     margin: 0;
     padding: 0;
@@ -20,38 +20,39 @@ ol {
 }
 
 header {
-  margin-top: 100px;
-  text-align: center;
-  width: 1400px;
-  font-family: "Rammetto One", serif;
-  color: lightcoral;
+    margin-top: 100px;
+    text-align: center;
+    width: 1400px;
+        font-family: 'Rammetto One', 'Jua', serif;
+    color: lightcoral;
 }
 header h1 {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 /* 구분선 */
 .division {
-  border-top: 1px solid #d7d7d7;
-  margin: 30px auto;
+    border-top: 1px solid #d7d7d7;
+    margin: 30px auto;
 }
 
 .division::after {
-  content: "◆";
-  position: relative;
-  z-index: 2;
-  top: -13px;
+    content: '◆';
+    position: relative;
+    z-index: 2;
+    top: -13px;
 }
 
 #cursor {
     position: absolute;
     z-index: 9999;
-  }
-  #cursor > img {
+}
+#cursor > img {
     width: 50px;
-  }
+}
 
-#main {
+#memberPost__main {
+        font-family: 'Rammetto One', 'Jua', serif;
     width: 100%;
     max-width: 600px;
     background-color: rgba(255, 255, 255);
@@ -86,6 +87,7 @@ header h1 {
 .form__group input,
 .form__group select,
 .form__group textarea {
+    width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
     border: 1px solid #ccc;

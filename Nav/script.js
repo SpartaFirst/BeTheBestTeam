@@ -19,16 +19,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+console.log('Nav js Load Success');
+
+const userEmail = localStorage.getItem('userEmail'); // LocalStorage에서 userEmail 가져오기
+const loginBtn = document.getElementsByClassName('nav-login-button')[0];
+const loginName = document.getElementsByClassName('nav__login__name')[0];
+const logoutBtn = document.getElementsByClassName('logout__btn')[0];
+console.log(userEmail);
+console.log(loginName);
 async function fetchUserName() {
-    const userEmail = localStorage.getItem('userEmail'); // LocalStorage에서 userEmail 가져오기
-    console.log(userEmail);
-
-    const loginBtn = document.getElementsByClassName('nav-login-button')[0];
-    const loginName = document.getElementsByClassName('nav__login__name')[0];
-    const logoutBtn = document.getElementsByClassName('logout__btn')[0];
-
     if (!userEmail) {
-        console.error('userEmail 값이 LocalStorage에 없습니다.');
+        console.log('userEmail 값이 LocalStorage에 없습니다.');
         // 이름과 로그아웃 버튼 숨기기
         loginName.classList.add('hidden');
         logoutBtn.classList.add('hidden');
@@ -52,11 +53,10 @@ async function fetchUserName() {
             loginBtn.classList.remove('hidden');
             return;
         }
-
+        console.log(loginName);
         // 일치하는 문서의 userName 값 가져오기
         querySnapshot.forEach((doc) => {
             const userData = doc.data();
-
             if (loginName) {
                 loginName.innerText = `${userData.userName}님`;
                 loginName.classList.remove('hidden');
@@ -79,21 +79,23 @@ async function fetchUserName() {
 // 로그아웃 버튼 클릭 시 동작
 function setupLogoutButton() {
     const logoutBtn = document.getElementsByClassName('logout__btn')[0];
-    logoutBtn.addEventListener('click', () => {
-        // LocalStorage에서 사용자 정보 삭제
-        localStorage.removeItem('userEmail');
-        alert('로그아웃되었습니다.');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // LocalStorage에서 사용자 정보 삭제
+            localStorage.removeItem('userEmail');
+            alert('로그아웃되었습니다.');
 
-        // 페이지 새로고침 또는 상태 초기화
-        location.reload(); // 현재 페이지를 새로고침
-    });
+            // 페이지 새로고침 또는 상태 초기화
+            location.reload(); // 현재 페이지를 새로고침
+        });
+    }
 }
 
 // 페이지가 로드될 때 fetchUserName 실행
-document.addEventListener('DOMContentLoaded', () => {
-    fetchUserName();
-    setupLogoutButton();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+fetchUserName();
+setupLogoutButton();
+// });
 
 // 성공적으로 위치 정보를 얻은 후 호출되는 함수
 const success = (position) => {
@@ -138,3 +140,5 @@ function getWeather(lat, lon) {
             alert('날씨 데이터를 가져오는 데 문제가 발생했습니다.');
         });
 }
+
+navigator.geolocation.getCurrentPosition(success); // success 함수가 여전히 참조 가능해야 함

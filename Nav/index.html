@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
   <link rel="stylesheet" href="../Nav/style.css" />
+  <link rel="stylesheet" href="../Login/style.css" />
 </head>
 
 <body>
@@ -27,16 +28,17 @@
           <!-- js요소선택검색 -->
           <li><a href="../Member/index.html">Members</a></li>
           <li class="user__login">
-            <a href="../Login/index.html" type="button" class="nav-login-button ">
-            </a>
+            <a type="button" class="logout__btn nav__logout"></a>
             <div class="nav__login__name"></div>
-            <a type="button" class="logout__btn" ></a>
+            <div type="button" id="openModal" class="nav-login-button nav__login">Login
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <script type='module' src="script.js"></script>
+  <script src="../Nav/script.js" type="module"></script>
+  <script src="../Login/script.js" type="module"></script>
 </body>
 
 </html>

@@ -12,67 +12,32 @@ import {
 // Authentication에서도 삭제하기 위함...
 import { getAuth, deleteUser } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
 
-fetch('../Nav/index.html')
-    .then((response) => response.text())
-    .then((html) => {
+async function loadNavbar() {
+    try {
+        const response = await fetch('../Nav/index.html');
+        const html = await response.text();
         document.getElementById('nav__container').innerHTML = html;
+        console.log('fetch nav 완료');
 
-        // HTML이 삽입된 후에, 스크립트 실행
+        // fetch 완료 후 실행할 코드
         const scripts = document.querySelectorAll('#nav__container script');
         scripts.forEach((script) => {
             const newScript = document.createElement('script');
+            console.log(newScript);
             if (script.src) {
-                newScript.src = script.src;
+                newScript.src = script.src; // 기존 src 복사
+                newScript.type = script.type || 'text/javascript'; // type 복사
             } else {
-                newScript.textContent = script.textContent;
+                newScript.textContent = script.textContent; // 인라인 스크립트 복사
             }
             document.head.appendChild(newScript);
         });
-
-        // 날씨 API 호출 후 데이터 삽입
-        navigator.geolocation.getCurrentPosition(success); // success 함수가 여전히 참조 가능해야 함
-    })
-    .catch((error) => console.error('Error loading navbar:', error));
-
-// success 함수와 getWeather 함수 정의 (main.js 내에서)
-const success = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    console.log(latitude);
-    getWeather(latitude, longitude); // 위도, 경도를 넘겨서 날씨 정보를 가져옵니다.
-};
-
-function getWeather(lat, lon) {
-    const API_KEY = '1396f5d3ad9dbaf5a390f92238b581a0';
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`)
-        .then((response) => response.json()) // 응답 데이터를 JSON으로 변환
-        .then((json) => {
-            // 날씨 데이터를 처리
-            console.log(json);
-
-            const locSection = json.name;
-            const tempSection = json.main.temp;
-            const descSection = json.weather[0].description;
-
-            const locHtml = document.getElementsByClassName('loc')[0];
-            const tempHtml = document.getElementsByClassName('temp')[0];
-            const descHtml = document.getElementsByClassName('desc')[0];
-            const iconHtml = document.getElementsByClassName('icon')[0];
-            console.log(locHtml);
-
-            const icon = json.weather[0].icon;
-            const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-
-            locHtml.innerText = locSection;
-            tempHtml.innerText = tempSection;
-            descHtml.innerText = descSection;
-            iconHtml.setAttribute('src', iconURL);
-        })
-        .catch((error) => {
-            // 에러 처리
-            alert(error);
-        });
+    } catch (error) {
+        console.error('Error loading navbar:', error);
+    }
 }
+
+loadNavbar();
 
 const firebaseConfig = {
     apiKey: 'AIzaSyBoI6KU8CSsiSE31m7Z6HdjuQhcw02VfWw',
@@ -82,7 +47,6 @@ const firebaseConfig = {
     messagingSenderId: '916725484205',
     appId: '1:916725484205:web:e6bc6963dff95693a39424',
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -128,7 +92,7 @@ docs.forEach((docsItem) => {
     let userGithub = row.userGithub;
     let userPhotoUrl = row.userPhotoUrl;
 
-    document.getElementById('main').innerHTML = `<section class="profile__container">
+    document.getElementById('memberInfo__main').innerHTML = `<section class="profile__container">
       <div class="profile__row">
         <div class="profile__name">
           <label for="userName" class="label">Name</label>
@@ -211,96 +175,99 @@ docs.forEach((docsItem) => {
 
     let isEditMode = false;
 
-    deleteBtn.addEventListener('click', async () => {
-        const userDocRef = doc(db, 'user', docsItem.id);
-        const confirmDelete = confirm('정말로 삭제하시겠습니까?');
-        if (confirmDelete) {
-            try {
-                await deleteDoc(userDocRef);
-                console.log('Document successfully deleted!');
-
-                const auth = getAuth(app);
-                const user = auth.currentUser;
-                console.log(user);
-                if (user) {
-                    await deleteUser(user);
-                    localStorage.clear();
-                    console.log('Authentication user successfully deleted!');
-                }
-                // 삭제 후 리다이렉트
-                alert('사용자가 삭제되었습니다.');
-                window.location.href = '../Member/index.html';
-            } catch (error) {
-                alert('삭제 중 오류가 발생했습니다.');
-            }
-        }
-    });
-    // edit 버튼 클릭 이벤트
-    editBtn.addEventListener('click', async () => {
-        isEditMode = !isEditMode;
-
-        if (isEditMode) {
-            // Edit 모드
-            editBtn.textContent = 'Save';
-            editBtn.classList.add('toggle__on');
-            // 숨김 처리 시 visibility로 유지
-            userNameDisplay.classList.add('hidden');
-            userNameInput.classList.remove('hidden');
-
-            userMbtiDisplay.classList.add('hidden');
-            userMbtiInput.classList.remove('hidden');
-
-            introDisplay.classList.add('hidden');
-            introTextarea.classList.remove('hidden');
-
-            hobbyDisplay.classList.add('hidden');
-            hobbyTextarea.classList.remove('hidden');
-
-            blogLinkDisplay.classList.add('hidden');
-            blogLinkInput.classList.remove('hidden');
-
-            githubLinkDisplay.classList.add('hidden');
-            githubLinkInput.classList.remove('hidden');
-
-            profilePhotoDisplay.classList.add('hidden');
-            profilePhotoInput.classList.remove('hidden');
-        } else {
-            editBtn.textContent = '✎';
-            editBtn.classList.remove('toggle__on');
-
-            // 사진 수정 안 했을 시 기존 photoUrl 가져옴
-            let basePhoto = '';
-            console.log(profilePhotoInput.value);
-
-            if (profilePhotoInput.files.length > 0) {
-                const file = profilePhotoInput.files[0];
-                basePhoto = await converFileToBase64(file);
-                console.log(basePhoto);
-            } else {
-                basePhoto = userPhotoUrl;
-            }
-
-            const updatedData = {
-                userName: userNameInput.value,
-                userMBTI: userMbtiInput.value,
-                userBio: introTextarea.value,
-                userHobby: hobbyTextarea.value,
-                userBlogName: blogLinkInput.value,
-                userGithub: githubLinkInput.value,
-                userPhotoUrl: basePhoto,
-            };
-            console.log(updatedData);
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', async () => {
             const userDocRef = doc(db, 'user', docsItem.id);
-            updateDoc(userDocRef, updatedData)
-                .then(() => {
-                    console.log('Document successfully updated!');
-                    location.reload();
-                })
-                .catch((error) => {
-                    console.error('Error updating document:', error);
-                    alert('저장 중 오류가 발생했습니다.');
-                });
-        }
-    });
-});
+            const confirmDelete = confirm('정말로 삭제하시겠습니까?');
+            if (confirmDelete) {
+                try {
+                    await deleteDoc(userDocRef);
+                    console.log('Document successfully deleted!');
 
+                    const auth = getAuth(app);
+                    const user = auth.currentUser;
+                    console.log(user);
+                    if (user) {
+                        await deleteUser(user);
+                        localStorage.clear();
+                        console.log('Authentication user successfully deleted!');
+                    }
+                    // 삭제 후 리다이렉트
+                    alert('사용자가 삭제되었습니다.');
+                    window.location.href = '../Member/index.html';
+                } catch (error) {
+                    alert('삭제 중 오류가 발생했습니다.');
+                }
+            }
+        });
+    }
+    // edit 버튼 클릭 이벤트
+    if (editBtn) {
+        editBtn.addEventListener('click', async () => {
+            isEditMode = !isEditMode;
+
+            if (isEditMode) {
+                // Edit 모드
+                editBtn.textContent = 'Save';
+                editBtn.classList.add('toggle__on');
+                // 숨김 처리 시 visibility로 유지
+                userNameDisplay.classList.add('hidden');
+                userNameInput.classList.remove('hidden');
+
+                userMbtiDisplay.classList.add('hidden');
+                userMbtiInput.classList.remove('hidden');
+
+                introDisplay.classList.add('hidden');
+                introTextarea.classList.remove('hidden');
+
+                hobbyDisplay.classList.add('hidden');
+                hobbyTextarea.classList.remove('hidden');
+
+                blogLinkDisplay.classList.add('hidden');
+                blogLinkInput.classList.remove('hidden');
+
+                githubLinkDisplay.classList.add('hidden');
+                githubLinkInput.classList.remove('hidden');
+
+                profilePhotoDisplay.classList.add('hidden');
+                profilePhotoInput.classList.remove('hidden');
+            } else {
+                editBtn.textContent = '✎';
+                editBtn.classList.remove('toggle__on');
+
+                // 사진 수정 안 했을 시 기존 photoUrl 가져옴
+                let basePhoto = '';
+                console.log(profilePhotoInput.value);
+
+                if (profilePhotoInput.files.length > 0) {
+                    const file = profilePhotoInput.files[0];
+                    basePhoto = await converFileToBase64(file);
+                    console.log(basePhoto);
+                } else {
+                    basePhoto = userPhotoUrl;
+                }
+
+                const updatedData = {
+                    userName: userNameInput.value,
+                    userMBTI: userMbtiInput.value,
+                    userBio: introTextarea.value,
+                    userHobby: hobbyTextarea.value,
+                    userBlogName: blogLinkInput.value,
+                    userGithub: githubLinkInput.value,
+                    userPhotoUrl: basePhoto,
+                };
+                console.log(updatedData);
+                const userDocRef = doc(db, 'user', docsItem.id);
+                updateDoc(userDocRef, updatedData)
+                    .then(() => {
+                        console.log('Document successfully updated!');
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        console.error('Error updating document:', error);
+                        alert('저장 중 오류가 발생했습니다.');
+                    });
+            }
+        });
+    }
+});
