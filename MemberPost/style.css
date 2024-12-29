@@ -12,6 +12,9 @@ body {
     background-size: cover;
     cursor: none;
 }
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 li,
 ul,
