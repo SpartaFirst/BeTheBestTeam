@@ -42,9 +42,10 @@ header h1 {
   z-index: 2;
   top: -13px;
 }
+
 #cursor {
     position: absolute;
-    z-index: 999;
+    z-index: 9999;
   }
   #cursor > img {
     width: 50px;
