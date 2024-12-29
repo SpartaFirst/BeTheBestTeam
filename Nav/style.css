@@ -64,6 +64,7 @@ a {
 
 .nav > img {
     width: 95px;
+    cursor: pointer;
 }
 
 .nav__title {
