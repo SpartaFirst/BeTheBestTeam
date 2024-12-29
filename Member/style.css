@@ -213,6 +213,7 @@ h4 {
 
 .section__link a {
   width: 25%;
+  margin-right: 0;
 }
 .section__link img {
   width: 100%;
