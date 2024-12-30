@@ -11,6 +11,7 @@ body {
     background: url(../image/background.jpg);
     background-attachment: fixed;
     background-size: cover;
+    cursor: none;
 }
 body::-webkit-scrollbar {
     display: none;

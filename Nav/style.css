@@ -112,7 +112,7 @@ a {
 
 .nav__list a:hover {
   color: lightcoral;
-  cursor: pointer;
+  cursor: none;
 }
 
 .nav-login-button {
@@ -141,6 +141,7 @@ a {
 .user__login > div,
 a {
   margin-right: 50px;
+  cursor: none;
 }
 
 .nav__login__name {

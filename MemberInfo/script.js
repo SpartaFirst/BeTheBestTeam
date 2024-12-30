@@ -189,7 +189,7 @@ docs.forEach((docsItem) => {
       // 사용자 상태확인
       onAuthStateChanged(auth, async (user) => {
         if (user) {
-          // 사용자 삭제제
+          // 사용자 삭제
           if (confirmDelete) {
             try {
               //   const user = auth.currentUser;

@@ -35,29 +35,37 @@
 
 // Main/index.html에서 Nav/index.html을 동적으로 불러오기
 async function loadNavbar() {
-    try {
-        const response = await fetch('../Nav/index.html');
-        const html = await response.text();
-        document.getElementById('nav__container').innerHTML = html;
-        console.log('fetch nav 완료');
+  try {
+    const response = await fetch("../Nav/index.html");
+    const html = await response.text();
+    document.getElementById("nav__container").innerHTML = html;
+    console.log("fetch nav 완료");
 
-        // fetch 완료 후 실행할 코드
-        const scripts = document.querySelectorAll('#nav__container script');
-        scripts.forEach((script) => {
-            const newScript = document.createElement('script');
-            console.log(newScript);
-            if (script.src) {
-                newScript.src = script.src; // 기존 src 복사
-                newScript.type = script.type || 'text/javascript'; // type 복사
-            } else {
-                newScript.textContent = script.textContent; // 인라인 스크립트 복사
-            }
-            document.head.appendChild(newScript);
-        });
-    } catch (error) {
-        console.error('Error loading navbar:', error);
-    }
+    // fetch 완료 후 실행할 코드
+    const scripts = document.querySelectorAll("#nav__container script");
+    scripts.forEach((script) => {
+      const newScript = document.createElement("script");
+      console.log(newScript);
+      if (script.src) {
+        newScript.src = script.src; // 기존 src 복사
+        newScript.type = script.type || "text/javascript"; // type 복사
+      } else {
+        newScript.textContent = script.textContent; // 인라인 스크립트 복사
+      }
+      document.head.appendChild(newScript);
+    });
+  } catch (error) {
+    console.error("Error loading navbar:", error);
+  }
 }
+// cursor 이벤트
+document.addEventListener("mousemove", (e) => {
+  let mouseX = e.pageX + 5;
+  let mouseY = e.pageY + 5;
 
+  let cursor = document.getElementById("cursor");
+  cursor.style.left = mouseX + "px";
+  cursor.style.top = mouseY + "px";
+});
 
 loadNavbar();
