@@ -132,7 +132,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 700px;
-  right: -40%;
+  right: -100%;
   top: 38%;
   padding: 10px 0;
   justify-content: center;

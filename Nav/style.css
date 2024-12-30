@@ -123,6 +123,10 @@ a {
   cursor: pointer;
 }
 
+.nav-login-button:hover {
+    color: lightcoral;
+}
+
 .hidden {
   display: none;
 }
