@@ -147,21 +147,7 @@ if (document.getElementById('loginBtn')) {
     });
 }
 
-if (document.getElementsByClassName('nav__logout')[0]) {
-    document.getElementsByClassName('nav__logout')[0].addEventListener('click', () => {
-        const auth = getAuth();
-        signOut(auth)
-            .then(() => {
-                alert('로그아웃 되었습니다.');
-                localStorage.clear();
-                // Sign-out successful.
-            })
-            .catch((error) => {
-                console.log(error);
-                // An error happened.
-            });
-    });
-}
+
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
@@ -177,6 +163,21 @@ onAuthStateChanged(auth, (user) => {
         document.getElementsByClassName('nav__logout')[0].classList.add('hidden');
         document.getElementsByClassName('nav__login')[0].classList.remove('hidden');
         console.log('로그아웃');
+        if (document.getElementsByClassName('nav__logout')[0]) {
+            document.getElementsByClassName('nav__logout')[0].addEventListener('click', () => {
+                const auth = getAuth();
+                signOut(auth)
+                    .then(() => {
+                        localStorage.clear();
+                        alert('로그아웃 되었습니다.');
+                        // Sign-out successful.
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        // An error happened.
+                    });
+            });
+        }
         // User is signed out
         // ...
     }
