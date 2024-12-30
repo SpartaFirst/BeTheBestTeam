@@ -88,24 +88,7 @@ git commit -am  ✨ update : 게시판 작성 기능 구현'
 
 ## :busts_in_silhouette: 프로젝트 멤버 소개
 
-- 임재원<br>
-<img width="236" alt="임재원" src="https://github.com/user-attachments/assets/4c297843-9ceb-46fb-b194-3dafddfa8228" />
-<br>
-- 강지수<br>
-<img width="250" alt="강지수" src="https://github.com/user-attachments/assets/16cbc9fb-f43a-4087-9da8-2c2d6db9248f" />
-<br>
-- 유경민<br>
-<img width="235" alt="유경민" src="https://github.com/user-attachments/assets/cddc7acb-421b-466b-839a-da6f6d015096" />
-<br>
-- 최지선<br>
-<img width="231" alt="최지선" src="https://github.com/user-attachments/assets/c5aa2ea7-0d54-4672-93d5-dacdca0db643" />
-<br>
-- 이지은<br>
-<img width="229" alt="이지은" src="https://github.com/user-attachments/assets/5aa66f0a-5798-4099-b4c6-31934c310b09" />
-<br>
-- 신병선<br>
-<img width="223" alt="신병선" src="https://github.com/user-attachments/assets/ba3068ac-7dc5-4ed0-8728-cea92a1a9e2c" />
-
+![멤버소개](https://github.com/user-attachments/assets/d1f2f795-fdf7-4a89-a53c-b75d5b376bcf)
 
 <br/>
 
