@@ -55,7 +55,7 @@ const app = initializeApp(firebaseConfig);
 // })
 
 // 로그인 모달 HTML 생성
-const loginHTML = `xx
+const loginHTML = `
         <div class="modal-overlay hidden" id="modal">
             <div class="modal-content">
                 <main id="main__login__container">
