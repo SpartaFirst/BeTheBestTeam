@@ -131,8 +131,7 @@ main {
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 40%;
-  height: 26%;
+  width: 700px;
   right: -40%;
   top: 38%;
   justify-content: center;
