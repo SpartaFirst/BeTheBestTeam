@@ -203,6 +203,7 @@ docs.forEach((docsItem) => {
               console.log("Document successfully deleted!");
               // 삭제 후 리다이렉트
               alert("사용자가 삭제되었습니다.");
+              window.location.href = "../Member/index.html";
             } catch (error) {
               console.error("Error deleting user:", error);
               alert("삭제 중 오류가 발생했습니다.");
@@ -216,9 +217,8 @@ docs.forEach((docsItem) => {
         }
       });
       // window.location.href = "../Member/index.html"; 아마 요게 작동하면서 삭제가 안됨 그래서 1초 뒤에 리다이렉트 하게 함.
-      setTimeout(() => {
-        window.location.href = "../Member/index.html";
-      }, 1000);
+      // setTimeout(() => {
+      // }, 1000);
     });
   }
   // edit 버튼 클릭 이벤트
